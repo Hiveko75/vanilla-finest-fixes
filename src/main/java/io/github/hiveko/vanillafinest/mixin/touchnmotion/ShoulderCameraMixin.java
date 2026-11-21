@@ -1,5 +1,6 @@
 package io.github.hiveko.vanillafinest.mixin.touchnmotion;
 
+import io.github.hiveko.vanillafinest.Platform;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.AbstractClientPlayer;
@@ -29,7 +30,7 @@ public abstract class ShoulderCameraMixin {
             at = @At("HEAD"), cancellable = true)
     private static void vanillaFinest$playerFacing(AbstractClientPlayer player, CallbackInfoReturnable<Vec3> cir) {
         if (!SHOULDER_SURFING) {
-            cir.setReturnValue(player.getViewVector(Minecraft.getInstance().getDeltaTracker().getGameTimeDeltaPartialTick(false)));
+            cir.setReturnValue(player.getViewVector(Platform.partialTick(Minecraft.getInstance())));
         }
     }
 }

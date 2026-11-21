@@ -20,4 +20,9 @@ public final class Platform {
     public static void showOverlay(Minecraft client, Component message) {
         client.player.sendOverlayMessage(message);
     }
+
+    /** Partial tick of the frame being rendered (for interpolated view directions). */
+    public static float partialTick(Minecraft client) {
+        return client.getDeltaTracker().getGameTimeDeltaPartialTick(false);
+    }
 }
