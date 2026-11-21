@@ -22,7 +22,7 @@ import org.slf4j.LoggerFactory;
  *   <li><b>Elytra Contrails</b> (elytratrails/): skips trail sampling for players and entities whose
  *       trails are switched off, and loops over players only. Mixins only.</li>
  *   <li><b>Touch'n Motion</b>: a seated player's head follows the player's facing instead of the
- *       camera unless Shoulder Surfing is installed. Mixin only.</li>
+ *       camera, with every camera mod. Mixin only.</li>
  *   <li><b>Atmospherics</b> (atmospherics/, 26.3): Improved Transparency pipelines for Atmospherics
  *       2.6.8's AirHaze particles, which crash the game without them. Mixin only.</li>
  *   <li><b>ImageIO</b> (imageio/, always on): ImageIO's disk cache is turned off at start-up, so mods
@@ -70,11 +70,7 @@ public class VanillaFinest implements ClientModInitializer {
         }
 
         if (check("Touch'n Motion", "touch_n_motion")) {
-            if (loader.isModLoaded("shouldersurfing")) {
-                LOGGER.info("Touch'n Motion module not needed: Shoulder Surfing is installed, so riders keep looking where the camera looks");
-            } else {
-                LOGGER.info("Touch'n Motion module active");
-            }
+            LOGGER.info("Touch'n Motion module active");
         }
 
         if (check("Atmospherics", "atmospherics")) {

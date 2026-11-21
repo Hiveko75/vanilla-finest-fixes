@@ -83,11 +83,10 @@ Made for the Elytra Contrails versions in the packs: 1.6.10 (26.3), 1.6.9 (26.2)
 ## Touch'n Motion module (needs Touch'n Motion)
 
 Touch'n Motion 1.0.5 turns a seated player's head (riding a horse, in a minecart, leaning on a fence, in
-a cockpit) towards the camera's direction. That was made for Shoulder Surfing, where the player looks
-where the camera looks. With Leawind's Third Person the camera moves around the player freely, so the
-rider looked in the wrong direction. Without Shoulder Surfing the head now follows the player's own
-facing again, as in 1.0.4. With Shoulder Surfing installed nothing changes (the log says the module
-is not needed). Made for Touch'n Motion 1.0.5, which has the same code on every Minecraft version.
+a cockpit) towards the camera's direction. With Leawind's Third Person the camera moves around the
+player freely, so the rider looked in the wrong direction, and it looked wrong with shoulder cameras
+too. The head now follows the player's own facing again, as in 1.0.4, with every camera mod (Shoulder
+Surfing included). Made for Touch'n Motion 1.0.5, which has the same code on every Minecraft version.
 
 ## Atmospherics module (needs Atmospherics 2.6.8; 26.3)
 
