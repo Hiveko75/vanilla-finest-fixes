@@ -5,9 +5,12 @@ import dbrighthd.elytratrails.config.pack.ResolvedTrailSettings;
 import dbrighthd.elytratrails.config.pack.TrailPackConfigManager;
 import dbrighthd.elytratrails.rendering.EntityTrailGroup;
 import dbrighthd.elytratrails.rendering.Trail;
+import dbrighthd.elytratrails.rendering.WingTipSampler;
 import it.unimi.dsi.fastutil.ints.Int2LongOpenHashMap;
 import net.minecraft.util.Util;
 import net.minecraft.world.entity.Entity;
+
+import java.util.List;
 
 /**
  * Elytra Contrails samples every flying player and every entity with a trail config up to 60 times
@@ -25,11 +28,20 @@ import net.minecraft.world.entity.Entity;
  *       within a second.</li>
  * </ul>
  * Entities with at least one trail on are sampled exactly as before.
+ *
+ * <p>Player model trail spawners: with "EMF Model Support" on, every sample of a flying player also
+ * renders and animates the whole player model a second time, only to look for EMF trail spawner bones
+ * in it. When the player model has none, that always comes back empty. After it came back empty for a
+ * player, the next {@value #MODEL_RECHECK_MS} ms skip it (same empty result), then it is checked again,
+ * so a model or pack change is picked up within that time.
  */
 public final class TrailSkip {
     private static final long RECHECK_MS = 1000;
+    private static final long MODEL_RECHECK_MS = 5000;
+    private static final WingTipSampler.EntityEmitters NO_EMITTERS = new WingTipSampler.EntityEmitters(List.of(), false);
 
     private static final Int2LongOpenHashMap DISABLED_UNTIL = new Int2LongOpenHashMap();
+    private static final Int2LongOpenHashMap NO_MODEL_SPAWNERS_UNTIL = new Int2LongOpenHashMap();
     private static long packCheckedAt = -RECHECK_MS;
     private static boolean packMayEnablePlayerTrails;
 
@@ -84,5 +96,27 @@ public final class TrailSkip {
             packMayEnablePlayerTrails = may;
         }
         return packMayEnablePlayerTrails;
+    }
+
+    /** The empty result to use while this player's model is known to have no trail spawners, else null. */
+    public static WingTipSampler.EntityEmitters skipPlayerModel(Entity player) {
+        long until = NO_MODEL_SPAWNERS_UNTIL.get(player.getId());
+        if (until == 0) return null;
+        if (Util.getMillis() < until) return NO_EMITTERS;
+        NO_MODEL_SPAWNERS_UNTIL.remove(player.getId());
+        return null;
+    }
+
+    /** Called with the result of the player model spawner search. */
+    public static void observePlayerModel(Entity player, WingTipSampler.EntityEmitters result) {
+        if (result == null || result.changedModelVariant() || !result.emitters().isEmpty()) {
+            NO_MODEL_SPAWNERS_UNTIL.remove(player.getId());
+            return;
+        }
+        long now = Util.getMillis();
+        if (NO_MODEL_SPAWNERS_UNTIL.size() > 256) {
+            NO_MODEL_SPAWNERS_UNTIL.int2LongEntrySet().removeIf(e -> e.getLongValue() <= now);
+        }
+        NO_MODEL_SPAWNERS_UNTIL.put(player.getId(), now + MODEL_RECHECK_MS);
     }
 }

@@ -44,6 +44,10 @@ Trail" off, for example "Enable Other's Trails"): switched-off trails are only h
   has trail configs for elytra or player models, or another mod uses the Elytra Contrails API (those
   can switch single trails back on). Then, as for other entities, an entity whose trails all turn out
   to be off is skipped and checked again a second later, so a settings change applies within a second.
+- **Player model trail spawners:** with "EMF Model Support" on, every sample of a flying player also
+  rendered and animated the whole player model a second time, only to look for EMF trail spawner bones.
+  When it finds none for a player, that search is skipped for the next 5 seconds (same empty result),
+  then checked again. In a full spark profile this was more than half of Elytra Contrails' cost.
 - Entities with a trail that is on, like arrows with the built-in Arrow Trails pack, are sampled
   exactly as before.
 
