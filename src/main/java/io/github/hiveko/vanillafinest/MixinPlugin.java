@@ -3,20 +3,17 @@ package io.github.hiveko.vanillafinest;
 import java.util.List;
 import java.util.Set;
 
-import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 /**
- * Applies each module's mixins only when the mod it belongs to is installed: mixins in mixin.iris.*
- * need Iris, mixin.voxy.* Voxy, mixin.elytratrails.* Elytra Contrails and mixin.touchnmotion.*
- * Touch'n Motion. Without that mod they are skipped, so nothing fails at startup.
+ * Applies each module's mixins only when the mod it belongs to is installed in a version the module was
+ * made for ({@link ModuleCheck}): mixin.iris.* needs Iris (GlintTexturesMixin: the Iris version with the
+ * glint bug), mixin.voxy.* Voxy, mixin.elytratrails.* Elytra Contrails, mixin.touchnmotion.* Touch'n
+ * Motion and mixin.atmospherics.* Atmospherics. Otherwise they are skipped, so nothing fails at startup.
  */
 public class MixinPlugin implements IMixinConfigPlugin {
-    /** Set when this jar contains the Voxy module (26.2 and 26.3). */
-    static boolean HAS_VOXY_MODULE;
-
     @Override
     public void onLoad(String mixinPackage) {
     }
@@ -28,20 +25,19 @@ public class MixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
-        if (mixinClassName.contains(".mixin.iris.")) {
-            return FabricLoader.getInstance().isModLoaded("iris");
-        }
-        if (mixinClassName.contains(".mixin.elytratrails.")) {
-            return FabricLoader.getInstance().isModLoaded("elytratrails");
-        }
-        if (mixinClassName.contains(".mixin.touchnmotion.")) {
-            return FabricLoader.getInstance().isModLoaded("touch_n_motion");
-        }
-        if (mixinClassName.contains(".mixin.voxy.")) {
-            HAS_VOXY_MODULE = true;
-            return FabricLoader.getInstance().isModLoaded("voxy");
-        }
-        return true;
+        String key = moduleKey(mixinClassName);
+        return key == null || ModuleCheck.matches(key);
+    }
+
+    /** The {@link ModuleCheck} key a mixin belongs to, or null for mixins that always apply. */
+    static String moduleKey(String mixinClassName) {
+        if (mixinClassName.endsWith(".mixin.iris.GlintTexturesMixin")) return "iris.glint";
+        if (mixinClassName.contains(".mixin.iris.")) return "iris";
+        if (mixinClassName.contains(".mixin.elytratrails.")) return "elytratrails";
+        if (mixinClassName.contains(".mixin.touchnmotion.")) return "touch_n_motion";
+        if (mixinClassName.contains(".mixin.voxy.")) return "voxy";
+        if (mixinClassName.contains(".mixin.atmospherics.")) return "atmospherics";
+        return null;
     }
 
     @Override

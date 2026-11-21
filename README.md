@@ -3,9 +3,33 @@
 Small client-side fixes and tweaks for the Vanilla Finest modpacks, in one Fabric mod. It replaces
 Better Clouds Toggle, Iris Glint Fix and Voxy Disabler on Vulkan.
 
-Each module only runs when the mod it works with is installed. Without that mod the module does
-nothing, and the game starts normally. At start-up the log lists every module that is active, for
-example `Elytra Contrails module active`.
+Each module only runs when the mod it works with is installed, **in a version the module was made
+for**. Without that mod, or with another version of it, the module does nothing and the game starts
+normally. At start-up the log lists every module that is active, for example `Elytra Contrails
+module active`, and a module whose mod has another version says why it is off, for example
+`Elytra Contrails module off: made for Elytra Contrails 1.6.10, found 1.6.11-26.3`.
+
+## Version check
+
+The versions are listed per Minecraft version in
+`platform/mc<version>/resources/vanilla-finest-helper.modules.properties`, compared with the number
+part of the mod's version (`1.6.10` for `1.6.10-26.3`):
+
+- Modules that change a mod's code or work around a bug of one version need that exact version:
+  Elytra Contrails, Touch'n Motion (1.0.5), Voxy, Atmospherics (2.6.8) and Iris' glint fix
+  (1.11.7). When that mod is updated, the module switches itself off until it is checked against the
+  new version and added to the list.
+- Modules that only read a mod's settings by name accept the same minor version: the Iris
+  transparency restore (for example Iris 1.11.x) and Better Clouds (for example 1.15.x).
+- ImageIO isn't tied to a mod and is always on.
+
+| Minecraft | Iris | glint fix | Better Clouds | Voxy | Elytra Contrails | Touch'n Motion | Atmospherics |
+|---|---|---|---|---|---|---|---|
+| 26.3 | 1.11.x | 1.11.7 | 1.15.x | 0.2.20 | 1.6.10 | 1.0.5 | 2.6.8 |
+| 26.2 | 1.11.x | – | 1.14.x | 0.2.19 | 1.6.9 | 1.0.5 | – |
+| 26.1.2 | 1.11.x | – | 1.13.x | – | 1.5.1 | 1.0.5 | – |
+| 1.21.11 | 1.10.x | – | 1.13.x | – | 1.4.9 | 1.0.5 | – |
+| 1.21.1 | 1.8.x | – | 1.13.x | – | 1.4.7.5 | 1.0.5 | – |
 
 ## Iris module (needs Iris)
 
@@ -65,6 +89,17 @@ rider looked in the wrong direction. Without Shoulder Surfing the head now follo
 facing again, as in 1.0.4. With Shoulder Surfing installed nothing changes (the log says the module
 is not needed). Made for Touch'n Motion 1.0.5, which has the same code on every Minecraft version.
 
+## Atmospherics module (needs Atmospherics 2.6.8; 26.3)
+
+With Improved Transparency on, Minecraft 26.3 draws translucent particles with order-independent
+transparency, and every particle layer needs its own set of pipelines for that. Atmospherics 2.6.8
+creates its AirHaze (ambient mist) particle layer without them, so the game crashes ("OIT pipeline set
+for particle layer not specified"). This module gives the mist matching pipelines: Minecraft's own
+transparency particle pipeline with Atmospherics' look (no alpha cutoff, no face culling) and additive
+blending, like the mist's normal blending. Any other particle layer without them gets Minecraft's
+translucent particle pipelines instead of crashing. Reported to the Atmospherics author; only applied
+with 2.6.8, so a fixed version is left alone. Replaces the separate Particle Transparency Fix mod.
+
 ## ImageIO module (always on)
 
 Java's ImageIO buffers images it reads from a stream in a temporary file on disk by default. Xaero's
@@ -85,22 +120,23 @@ session. On OpenGL nothing changes. It does not make Voxy work on Vulkan.
 
 | File | Minecraft | Modules |
 |---|---|---|
-| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO |
+| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO |
 | `vanilla-finest-helper-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO |
 | `vanilla-finest-helper-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
 | `vanilla-finest-helper-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
 | `vanilla-finest-helper-*+mc1.21.1.jar` | 1.21, 1.21.1 | Iris, Better Clouds, Elytra Contrails (player trails), Touch'n Motion, ImageIO |
 
-The mod declares that it provides `better-clouds-toggle`, `iris-glint-fix` and
-`voxy-disabler-on-vulkan` (as far as that version contains them), so Fabric refuses to load it
+The mod declares that it provides `better-clouds-toggle`, `iris-glint-fix`,
+`voxy-disabler-on-vulkan` and `particle-transparency-fix` (as far as that version contains them), so Fabric refuses to load it
 together with the old separate mods.
 
 ## How it works
 
 - Iris, Better Clouds and Voxy are not compiled against or bundled. Better Clouds and Iris are
   reached by name at run time; the Iris and Voxy mixins are only applied when that mod is installed
-  (`MixinPlugin`: mixins in `mixin.iris` need Iris, `mixin.voxy` Voxy, `mixin.elytratrails` Elytra
-  Contrails, `mixin.touchnmotion` Touch'n Motion). Elytra Contrails is only needed at compile time
+  (`MixinPlugin` with `ModuleCheck`: mixins in `mixin.iris` need Iris, `mixin.voxy` Voxy,
+  `mixin.elytratrails` Elytra Contrails, `mixin.touchnmotion` Touch'n Motion, `mixin.atmospherics`
+  Atmospherics, each in a listed version). Elytra Contrails is only needed at compile time
   (`compileOnly`, from Modrinth's Maven); Touch'n Motion is targeted by class name.
 - Elytra Contrails: `TrailSkip` (src/) is shared by every version; the full mixin and the player
   model skip are in `modules/elytratrails-model/` (1.21.11 and 26.x), and 1.21.1 has a smaller

@@ -11,7 +11,8 @@
     "voxy.MinecraftDeviceMixin",
     "voxy.VoxyClientMixin",
     "elytratrails.TrailManagerMixin",
-    "touchnmotion.ShoulderCameraMixin"
+    "touchnmotion.ShoulderCameraMixin",
+    "atmospherics.QuadParticleFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
