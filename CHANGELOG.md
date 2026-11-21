@@ -9,6 +9,7 @@ First version. Combines Better Clouds Toggle 1.2.1, Iris Glint Fix and Voxy Disa
 - **Better Clouds:** toggle key, automatic "Mellow (auto)" cloud preset and Voxy cloud depth from Better Clouds Toggle 1.2.1. The key binding keeps its name, so existing bindings carry over.
 - **Elytra Contrails, 26.3:** fewer trail checks. Player trails loop over players only, and players or entities whose trails are all switched off (for example with "Enable Other's Trails" off) are no longer sampled up to 60 times per second. The second player-model render that looks for EMF trail spawner bones is skipped while the player model has none (rechecked every 5 s); in a spark profile that was more than half of Elytra Contrails' cost. Entities with trails on, like arrows with Arrow Trails, are unchanged.
 - **Touch'n Motion 1.0.5, 26.3:** a seated or riding player's head follows the player's own facing again instead of the camera direction, so riders no longer look the wrong way with Leawind's Third Person (unchanged with Shoulder Surfing).
+- **ImageIO, 26.3:** ImageIO's disk cache is turned off at start-up, so mods reading textures through ImageIO (like Xaero's World Map colouring new blocks) no longer create a temp file on disk per image on the render thread.
 - **Voxy, 26.2 and 26.3:** keeps Vulkan selected and switches Voxy off for that session, from Voxy Disabler on Vulkan 1.0.1.
 
 Replaces the three separate mods; Fabric won't load it together with them. Client-side only. Iris, Better Clouds, Voxy and Fabric API are all optional.

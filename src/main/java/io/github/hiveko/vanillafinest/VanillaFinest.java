@@ -21,6 +21,9 @@ import org.slf4j.LoggerFactory;
  *       Contrails is installed.</li>
  *   <li><b>Touch'n Motion</b> (26.3): a seated player's head follows the player's facing instead of
  *       the camera unless Shoulder Surfing is installed. Mixin only, applied with Touch'n Motion.</li>
+ *   <li><b>ImageIO</b> (26.3, always on): ImageIO's disk cache is turned off at start-up
+ *       ({@code VersionInit} in platform/mc26.3), so mods reading textures through ImageIO no longer
+ *       create a temp file per image on the render thread.</li>
  *   <li><b>Voxy</b> (voxy/, 26.2 and 26.3): lets the game stay on Vulkan with Voxy installed and
  *       switches Voxy off for that session. Mixins only, applied when Voxy is installed.</li>
  * </ul>
@@ -31,6 +34,7 @@ public class VanillaFinest implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        VersionInit.init();
         FabricLoader loader = FabricLoader.getInstance();
         if (loader.isModLoaded("betterclouds")) {
             if (loader.isModLoaded("fabric-api")) {

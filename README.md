@@ -61,6 +61,15 @@ where the camera looks. With Leawind's Third Person the camera moves around the 
 rider looked in the wrong direction. Without Shoulder Surfing the head now follows the player's own
 facing again, as in 1.0.4. With Shoulder Surfing installed nothing changes.
 
+## ImageIO disk cache off (26.3, always on)
+
+Java's ImageIO buffers images it reads from a stream in a temporary file on disk by default. Xaero's
+World Map reads block textures that way on the render thread whenever it meets a block it hasn't
+coloured yet, so exploring created and deleted a temp file per texture, which showed up in spark as
+frame hitches (about 10% of the slow frames). Vanilla Finest Helper turns that cache off at start-up
+(`ImageIO.setUseCache(false)`), so ImageIO buffers in memory instead. This helps every mod that reads
+images through ImageIO; block textures are tiny, so memory use doesn't change noticeably.
+
 ## Voxy part (needs Voxy; 26.2 and 26.3)
 
 Voxy only renders with OpenGL and forces Minecraft onto OpenGL even when Vulkan is selected. With
@@ -71,7 +80,7 @@ session. On OpenGL nothing changes. It does not make Voxy work on Vulkan.
 
 | File | Minecraft | Parts |
 |---|---|---|
-| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion |
+| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO cache |
 | `vanilla-finest-helper-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy |
 | `vanilla-finest-helper-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds |
 | `vanilla-finest-helper-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds |
