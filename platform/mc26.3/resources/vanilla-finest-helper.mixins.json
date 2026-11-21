@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "io.github.hiveko.vanillafinest.mixin",
+  "plugin": "io.github.hiveko.vanillafinest.MixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "iris.OptionInstanceAccessor",
+    "iris.OptionInstanceMixin",
+    "iris.LevelExtractorMixin",
+    "iris.GlintTexturesMixin",
+    "voxy.MinecraftDeviceMixin",
+    "voxy.VoxyClientMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

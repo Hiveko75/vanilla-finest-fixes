@@ -1,0 +1,50 @@
+plugins {
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
+}
+
+def mc = (findProperty('mc') ?: project.mc_default).toString()
+def v = new Properties()
+file("versions/${mc}.properties").withInputStream { v.load(it) }
+
+version = "${project.mod_version}+mc${mc}"
+group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
+
+sourceSets.main {
+    java.srcDirs += ['platform/mc26/java', "platform/mc${mc}/java"]
+    resources.srcDirs += ["platform/mc${mc}/resources"]
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${v.minecraft_version}"
+    implementation "net.fabricmc:fabric-loader:${v.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${v.fabric_version}"
+    // Iris, Better Clouds and Voxy are not needed at compile time: they are reached by name at run time.
+}
+
+processResources {
+    def props = [version: project.version, minecraft_range: v.minecraft_range,
+                 loader_min: v.loader_min, java_version: '25', provides: v.provides]
+    inputs.properties props
+    filesMatching("fabric.mod.json") { expand props }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
+    it.options.release = 25
+}
+
+java {
+    if (JavaVersion.current() < JavaVersion.toVersion(25)) {
+        toolchain.languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archives_base_name}" }
+    }
+}
