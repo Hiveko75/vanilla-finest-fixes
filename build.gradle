@@ -18,11 +18,21 @@ sourceSets.main {
     resources.srcDirs += ["platform/mc${mc}/resources"]
 }
 
+repositories {
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+        content { includeGroup 'maven.modrinth' }
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${v.minecraft_version}"
     implementation "net.fabricmc:fabric-loader:${v.loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${v.fabric_version}"
     // Iris, Better Clouds and Voxy are not needed at compile time: they are reached by name at run time.
+    // Elytra Contrails is needed to compile its mixins (versions with an elytratrails= line); not bundled.
+    if (v.elytratrails) compileOnly(v.elytratrails)
 }
 
 processResources {

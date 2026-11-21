@@ -32,6 +32,23 @@ nothing, and the game starts normally.
 - **Voxy cloud depth:** turns on Better Clouds' built-in Voxy support, so with shaders clouds are
   hidden behind distant Voxy terrain.
 
+## Elytra Contrails part (needs Elytra Contrails; 26.3)
+
+Elytra Contrails samples trails up to 60 times per second. Each time it loops over every rendered
+entity, and for every flying player and every entity with a trail config it renders the model once
+more to find where the trails start. It does that even when those trails are switched off ("Enable
+Trail" off, for example "Enable Other's Trails"): switched-off trails are only hidden when drawn.
+
+- **Player trails:** only players are looped over, not every entity.
+- **Switched-off trails:** players whose trails are off are not sampled at all, unless a resource pack
+  has trail configs for elytra or player models, or another mod uses the Elytra Contrails API (those
+  can switch single trails back on). Then, as for other entities, an entity whose trails all turn out
+  to be off is skipped and checked again a second later, so a settings change applies within a second.
+- Entities with a trail that is on, like arrows with the built-in Arrow Trails pack, are sampled
+  exactly as before.
+
+Made for Elytra Contrails 1.6.10 (26.3).
+
 ## Voxy part (needs Voxy; 26.2 and 26.3)
 
 Voxy only renders with OpenGL and forces Minecraft onto OpenGL even when Vulkan is selected. With
@@ -42,7 +59,7 @@ session. On OpenGL nothing changes. It does not make Voxy work on Vulkan.
 
 | File | Minecraft | Parts |
 |---|---|---|
-| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy |
+| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails |
 | `vanilla-finest-helper-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy |
 | `vanilla-finest-helper-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds |
 | `vanilla-finest-helper-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds |
@@ -56,7 +73,8 @@ together with the old separate mods.
 
 - Iris, Better Clouds and Voxy are not compiled against or bundled. Better Clouds and Iris are
   reached by name at run time; the Iris and Voxy mixins are only applied when that mod is installed
-  (`MixinPlugin`: mixins in `mixin.iris` need Iris, mixins in `mixin.voxy` need Voxy).
+  (`MixinPlugin`: mixins in `mixin.iris` need Iris, `mixin.voxy` Voxy, `mixin.elytratrails` Elytra
+  Contrails). Elytra Contrails is only needed at compile time (`compileOnly`, from Modrinth's Maven).
 - Transparency: `OptionInstance.set` is watched for Iris' change (only counted while shaders are
   enabled). At the start of the next renderer reload without shaders (`LevelExtractor` on 26.2+,
   `LevelRenderer` before), the option is set back directly, so there's no second reload, and

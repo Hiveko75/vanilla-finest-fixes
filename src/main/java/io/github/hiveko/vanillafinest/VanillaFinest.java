@@ -16,6 +16,9 @@ import org.slf4j.LoggerFactory;
  *       crash fix. Mixins only, applied when Iris is installed (see {@link MixinPlugin}).</li>
  *   <li><b>Better Clouds</b> (clouds/): toggle key, automatic Mellow cloud preset, Voxy cloud depth.
  *       Started here when Better Clouds and Fabric API are installed.</li>
+ *   <li><b>Elytra Contrails</b> (elytratrails/, 26.3): skips trail sampling for players and entities
+ *       whose trails are switched off, and loops over players only. Mixins only, applied when Elytra
+ *       Contrails is installed.</li>
  *   <li><b>Voxy</b> (voxy/, 26.2 and 26.3): lets the game stay on Vulkan with Voxy installed and
  *       switches Voxy off for that session. Mixins only, applied when Voxy is installed.</li>
  * </ul>
