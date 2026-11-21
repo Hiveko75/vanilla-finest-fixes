@@ -10,7 +10,8 @@
     "iris.GlintTexturesMixin",
     "voxy.MinecraftDeviceMixin",
     "voxy.VoxyClientMixin",
-    "elytratrails.TrailManagerMixin"
+    "elytratrails.TrailManagerMixin",
+    "touchnmotion.ShoulderCameraMixin"
   ],
   "injectors": {
     "defaultRequire": 1

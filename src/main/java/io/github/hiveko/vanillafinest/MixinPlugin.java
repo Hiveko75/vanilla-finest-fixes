@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 /**
  * Applies each mixin only when the mod it belongs to is installed: mixins in mixin.iris.* need Iris,
- * mixins in mixin.voxy.* need Voxy, mixins in mixin.elytratrails.* need Elytra Contrails. Without that mod they are skipped, so nothing fails at startup.
+ * mixins in mixin.voxy.* need Voxy, mixins in mixin.elytratrails.* need Elytra Contrails, mixins in mixin.touchnmotion.* need Touch'n Motion. Without that mod they are skipped, so nothing fails at startup.
  */
 public class MixinPlugin implements IMixinConfigPlugin {
     /** Set when this jar contains the Voxy part (26.2 and 26.3). */
@@ -32,6 +32,9 @@ public class MixinPlugin implements IMixinConfigPlugin {
         }
         if (mixinClassName.contains(".mixin.elytratrails.")) {
             return FabricLoader.getInstance().isModLoaded("elytratrails");
+        }
+        if (mixinClassName.contains(".mixin.touchnmotion.")) {
+            return FabricLoader.getInstance().isModLoaded("touch_n_motion");
         }
         if (mixinClassName.contains(".mixin.voxy.")) {
             HAS_VOXY_PART = true;
