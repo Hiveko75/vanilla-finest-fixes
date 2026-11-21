@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 /**
  * Applies each mixin only when the mod it belongs to is installed: mixins in mixin.iris.* need Iris,
  * mixins in mixin.voxy.* need Voxy. Without that mod they are skipped, so nothing fails at startup.
+ * Other mixins (mixin.particles) are always applied.
  */
 public class MixinPlugin implements IMixinConfigPlugin {
     /** Set when this jar contains the Voxy part (26.2 and 26.3). */

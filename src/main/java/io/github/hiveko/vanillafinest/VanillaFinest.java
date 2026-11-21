@@ -16,6 +16,9 @@ import org.slf4j.LoggerFactory;
  *       crash fix. Mixins only, applied when Iris is installed (see {@link MixinPlugin}).</li>
  *   <li><b>Better Clouds</b> (clouds/): toggle key, automatic Mellow cloud preset, Voxy cloud depth.
  *       Started here when Better Clouds and Fabric API are installed.</li>
+ *   <li><b>Particle transparency</b> (particles/, 26.3): OIT pipelines for particle layers that have
+ *       none, so Atmospherics' AirHaze no longer crashes with Improved Transparency. Always applied;
+ *       it only acts on such layers.</li>
  *   <li><b>Voxy</b> (voxy/, 26.2 and 26.3): lets the game stay on Vulkan with Voxy installed and
  *       switches Voxy off for that session. Mixins only, applied when Voxy is installed.</li>
  * </ul>

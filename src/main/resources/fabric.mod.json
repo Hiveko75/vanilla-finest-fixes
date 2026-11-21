@@ -3,7 +3,7 @@
   "id": "vanilla-finest-helper",
   "version": "${version}",
   "name": "Vanilla Finest Helper",
-  "description": "Small fixes and tweaks for the Vanilla Finest modpacks. Iris: turns Improved Transparency (Fabulous graphics on 1.21.1) back on when shaders are disabled, and on 26.3 fixes the enchantment glint crash. Better Clouds: toggle key, automatic Mellow cloud preset, clouds hidden behind Voxy terrain. Voxy (26.2+): keeps Vulkan selected and switches Voxy off for that session. Each part only runs when its mod is installed.",
+  "description": "Small fixes and tweaks for the Vanilla Finest modpacks. Iris: turns Improved Transparency (Fabulous graphics on 1.21.1) back on when shaders are disabled, and on 26.3 fixes the enchantment glint crash. 26.3: fixes the Improved Transparency crash with Atmospherics' AirHaze particles. Better Clouds: toggle key, automatic Mellow cloud preset, clouds hidden behind Voxy terrain. Voxy (26.2+): keeps Vulkan selected and switches Voxy off for that session. Each part only runs when its mod is installed.",
   "authors": ["Hiveko"],
   "contact": {
     "sources": "https://github.com/Hiveko75/vanilla-finest-helper",

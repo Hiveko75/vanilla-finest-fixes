@@ -9,7 +9,8 @@
     "iris.LevelExtractorMixin",
     "iris.GlintTexturesMixin",
     "voxy.MinecraftDeviceMixin",
-    "voxy.VoxyClientMixin"
+    "voxy.VoxyClientMixin",
+    "particles.QuadParticleFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
