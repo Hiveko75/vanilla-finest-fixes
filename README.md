@@ -1,8 +1,7 @@
 # Vanilla Finest Helper
 
 Small client-side fixes and tweaks for the Vanilla Finest modpacks, in one Fabric mod. It replaces
-Better Clouds Toggle, Iris Glint Fix and Voxy Disabler on Vulkan, and fixes Atmospherics' AirHaze
-crash with Improved Transparency.
+Better Clouds Toggle, Iris Glint Fix and Voxy Disabler on Vulkan.
 
 Each part only runs when the mod it works with is installed. Without that mod the part does
 nothing, and the game starts normally.
@@ -22,22 +21,6 @@ nothing, and the game starts normally.
   ([IrisShaders/Iris#3390](https://github.com/IrisShaders/Iris/issues/3390)). The glint textures
   are now loaded at the start of every frame, before any render pass. Older Iris versions don't
   look the texture up there, so they don't need it.
-
-## Particle transparency fix (26.3)
-
-With *Improved Transparency* on, Minecraft 26.3 draws translucent particles with order-independent
-transparency, and every particle type needs its own shaders for that. Atmospherics 2.6.8 has none for
-its AirHaze particles, so the game crashed with "OIT pipeline set for particle layer not specified"
-as soon as AirHaze appeared.
-
-- **Atmospherics AirHaze** now gets matching shaders: Minecraft's own particle shader without the
-  alpha cutoff, like Atmospherics' own, and with Minecraft's additive mode (the one used for energy
-  swirls and lightning), which matches how AirHaze blends normally. It looks the same with
-  Improved Transparency on or off.
-- Any other mod's particle type without these shaders is drawn with Minecraft's translucent particle
-  ones instead of crashing (logged once per particle type).
-
-Works with and without Async Particles. Particle types that have their own shaders aren't touched.
 
 ## Better Clouds part (needs Better Clouds and Fabric API)
 
@@ -59,7 +42,7 @@ session. On OpenGL nothing changes. It does not make Voxy work on Vulkan.
 
 | File | Minecraft | Parts |
 |---|---|---|
-| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), particle transparency fix, Better Clouds, Voxy |
+| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy |
 | `vanilla-finest-helper-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy |
 | `vanilla-finest-helper-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds |
 | `vanilla-finest-helper-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds |
