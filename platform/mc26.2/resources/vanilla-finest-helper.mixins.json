@@ -8,7 +8,9 @@
     "iris.OptionInstanceMixin",
     "iris.LevelExtractorMixin",
     "voxy.MinecraftDeviceMixin",
-    "voxy.VoxyClientMixin"
+    "voxy.VoxyClientMixin",
+    "elytratrails.TrailManagerMixin",
+    "touchnmotion.ShoulderCameraMixin"
   ],
   "injectors": {
     "defaultRequire": 1

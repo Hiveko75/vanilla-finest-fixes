@@ -6,6 +6,7 @@ import dbrighthd.elytratrails.config.pack.ResolvedSampleSettings;
 import dbrighthd.elytratrails.config.pack.ResolvedTrailSettings;
 import dbrighthd.elytratrails.rendering.TrailManager;
 import dbrighthd.elytratrails.rendering.WingTipSampler;
+import io.github.hiveko.vanillafinest.elytratrails.PlayerModelSkip;
 import io.github.hiveko.vanillafinest.elytratrails.TrailSkip;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -15,8 +16,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 /**
- * Elytra Contrails (1.6.x, 26.3) samples trails at the end of every level extraction, up to its
- * "max samples per second". These hooks:
+ * Elytra Contrails (1.4.9 to 1.6.x: 1.21.11, 26.1.2, 26.2 and 26.3) samples trails at the end of
+ * every level extraction, up to its "max samples per second". These hooks:
  * <ul>
  *   <li>loop over the players only when looking for player trails (it looped over every entity being
  *       rendered and skipped everything that is not a player);</li>
@@ -25,10 +26,12 @@ import org.spongepowered.asm.mixin.injection.At;
  *       when they stop flying;</li>
  *   <li>look at each trail group the mod creates or reuses, to learn whether its trails are on;</li>
  *   <li>skip the second player-model render that looks for EMF trail spawner bones while the player's
- *       model is known to have none ({@link TrailSkip#skipPlayerModel}).</li>
+ *       model is known to have none ({@link PlayerModelSkip}).</li>
  * </ul>
  * The entity hooks list both the 1.6.10 and the 1.6.11 method that holds the entity loop; require = 0
- * there, so a later version that changes the loop only loses the skipping, not the game.
+ * there, so a later version that changes the loop only loses the skipping, not the game. Elytra
+ * Contrails for 1.21.1 (1.4.7) has no entity trails and no model spawner search: it has its own
+ * smaller version of this mixin in platform/mc1.21.1.
  */
 @Mixin(TrailManager.class)
 public abstract class TrailManagerMixin {
@@ -65,10 +68,10 @@ public abstract class TrailManagerMixin {
             at = @At(value = "INVOKE", target = "Ldbrighthd/elytratrails/rendering/WingTipSampler;getEntityTrailEmitterPositions(Lnet/minecraft/world/entity/Entity;FLdbrighthd/elytratrails/config/pack/ResolvedSampleSettings;)Ldbrighthd/elytratrails/rendering/WingTipSampler$EntityEmitters;"))
     private WingTipSampler.EntityEmitters vanillaFinest$skipEmptyPlayerModel(WingTipSampler sampler, Entity player, float partialTick,
                                                                           ResolvedSampleSettings settings, Operation<WingTipSampler.EntityEmitters> original) {
-        WingTipSampler.EntityEmitters skipped = TrailSkip.skipPlayerModel(player);
+        WingTipSampler.EntityEmitters skipped = PlayerModelSkip.skip(player);
         if (skipped != null) return skipped;
         WingTipSampler.EntityEmitters result = original.call(sampler, player, partialTick, settings);
-        TrailSkip.observePlayerModel(player, result);
+        PlayerModelSkip.observe(player, result);
         return result;
     }
 }

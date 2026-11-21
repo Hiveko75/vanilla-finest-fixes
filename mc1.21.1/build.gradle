@@ -19,11 +19,21 @@ sourceSets.main {
     resources.srcDirs = [new File(root, 'src/main/resources'), new File(root, 'platform/mc1.21.1/resources')]
 }
 
+repositories {
+    maven {
+        name = 'Modrinth'
+        url = 'https://api.modrinth.com/maven'
+        content { includeGroup 'maven.modrinth' }
+    }
+}
+
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.officialMojangMappings()
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // Compile-only: Elytra Contrails 1.4.7.5 (Modrinth version 26ZE7cvJ), for the Elytra Contrails module; not bundled.
+    modCompileOnly "maven.modrinth:elytra-contrails-mod:26ZE7cvJ"
 }
 
 processResources {

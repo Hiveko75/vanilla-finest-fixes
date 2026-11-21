@@ -6,7 +6,9 @@
   "client": [
     "iris.OptionInstanceAccessor",
     "iris.OptionInstanceMixin",
-    "iris.LevelRendererMixin"
+    "iris.LevelRendererMixin",
+    "elytratrails.TrailManagerMixin",
+    "touchnmotion.ShoulderCameraMixin"
   ],
   "injectors": {
     "defaultRequire": 1

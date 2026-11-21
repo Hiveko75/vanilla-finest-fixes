@@ -14,7 +14,7 @@ base {
 }
 
 sourceSets.main {
-    java.srcDirs += ['platform/mc26/java', "platform/mc${mc}/java"]
+    java.srcDirs += ['platform/mc26/java', "platform/mc${mc}/java", 'modules/elytratrails-model/java']
     resources.srcDirs += ["platform/mc${mc}/resources"]
 }
 
@@ -31,8 +31,8 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${v.loader_version}"
     implementation "net.fabricmc.fabric-api:fabric-api:${v.fabric_version}"
     // Iris, Better Clouds and Voxy are not needed at compile time: they are reached by name at run time.
-    // Elytra Contrails is needed to compile its mixins (versions with an elytratrails= line); not bundled.
-    if (v.elytratrails) compileOnly(v.elytratrails)
+    // Elytra Contrails is needed to compile the Elytra Contrails module (elytratrails= line); not bundled.
+    compileOnly(v.elytratrails)
 }
 
 processResources {
