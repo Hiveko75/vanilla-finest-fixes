@@ -116,7 +116,7 @@ player's shared Minecraft folder, so all instances use the same folders:
 
 | Mod | Setting | Folder |
 |---|---|---|
-| Screenshot Gallery 2.x | the folder the gallery shows (`customScreenshotDir`) | `<minecraft>/screenshots` |
+| Screenshot Gallery 2.x | screenshot folder, for saving and for the gallery (`customScreenshotDir`) | `<minecraft>/screenshots` |
 | Litematica | custom schematic folder, switched on | `<minecraft>/schematics` |
 | Flashback Settings | Flashback's replay folder (`replayFolder`) | `<minecraft>/flashback/replays` |
 
@@ -130,9 +130,8 @@ player's shared Minecraft folder, so all instances use the same folders:
   computer is not changed. An empty setting, or a folder that is not there, is replaced.
 - Only the settings files of installed mods are changed. A missing settings file is started from
   the modpack's default for it (`config/modpack_defaults/config/`).
-- Screenshot Gallery's setting only decides which folder the gallery shows. The game still saves
-  new screenshots in the instance's own `screenshots` folder. Screenshot Gallery 1.x (Minecraft
-  1.21.1) has no such setting.
+- With Screenshot Gallery's folder set, the game saves new screenshots there and the gallery shows
+  that folder. Screenshot Gallery 1.x (Minecraft 1.21.1) has no such setting.
 
 ## Voxy module (needs Voxy; 26.2 and 26.3)
 

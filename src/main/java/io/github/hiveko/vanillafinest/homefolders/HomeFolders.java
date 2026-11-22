@@ -26,7 +26,8 @@ import org.slf4j.LoggerFactory;
  * the player's shared Minecraft folder (the launcher's ".minecraft"), so every instance uses the same
  * screenshots, schematics and replays:
  * <ul>
- *   <li>Screenshot Gallery 2.x: the folder the gallery shows, {@code <minecraft>/screenshots};</li>
+ *   <li>Screenshot Gallery 2.x: its screenshot folder (where new screenshots are saved and what the
+ *       gallery shows), {@code <minecraft>/screenshots};</li>
  *   <li>Litematica: its schematic folder, {@code <minecraft>/schematics};</li>
  *   <li>Flashback Settings: Flashback's replay folder, {@code <minecraft>/flashback/replays}.</li>
  * </ul>
@@ -105,7 +106,7 @@ public class HomeFolders implements PreLaunchEntrypoint {
         Files.createDirectories(folder);
         json.addProperty("customScreenshotDir", folder.toString());
         write(file, json);
-        LOGGER.info("Home folders module: Screenshot Gallery shows {}", folder);
+        LOGGER.info("Home folders module: Screenshot Gallery's screenshot folder is {}", folder);
         return true;
     }
 
