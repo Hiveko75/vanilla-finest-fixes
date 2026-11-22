@@ -10,6 +10,7 @@
     "issues": "https://github.com/Hiveko75/vanilla-finest-helper/issues"
   },
   "license": "MIT",
+  "icon": "assets/vanilla-finest-helper/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": ["io.github.hiveko.vanillafinest.VanillaFinest"],
