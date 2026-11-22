@@ -19,6 +19,9 @@ import java.lang.reflect.Field;
  * (disabled) one. Better Clouds then picks up Voxy's depth texture on its next frame. Nothing is
  * compiled against Better Clouds or Voxy; if a class or method is missing, it leaves things as they
  * were.
+ *
+ * Better Clouds 1.13.x (Minecraft 26.1.2 and older) has no Voxy compatibility class at all; there this
+ * does nothing and logs one line.
  */
 final class VoxyCloudDepth {
     private static final Logger LOGGER = LoggerFactory.getLogger("Vanilla Finest Helper");
@@ -35,9 +38,19 @@ final class VoxyCloudDepth {
             done = true;
             return;
         }
+        ClassLoader loader = VoxyCloudDepth.class.getClassLoader();
+        Class<?> compatClass;
         try {
-            ClassLoader loader = VoxyCloudDepth.class.getClassLoader();
-            Field instance = Class.forName(COMPAT, true, loader).getField("instance");
+            compatClass = Class.forName(COMPAT, true, loader);
+        } catch (ClassNotFoundException | LinkageError e) {
+            // Better Clouds before 1.14 (Minecraft 26.1.2 and older) has no Voxy compatibility class:
+            // nothing to enable, and nothing to warn about.
+            done = true;
+            LOGGER.info("This Better Clouds version has no Voxy support to enable (clouds and Voxy terrain work as before)");
+            return;
+        }
+        try {
+            Field instance = compatClass.getField("instance");
             Object current = instance.get(null);
             if (current == null) return; // Better Clouds hasn't initialised its compat yet
             done = true;

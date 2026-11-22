@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- **Better Clouds:** no more warning with a long error in the log ("ClassNotFoundException: …VoxyCompat") on Minecraft 26.1.2, 1.21.11 and 1.21.1 with Voxy installed. Better Clouds 1.13.x has no Voxy support to switch on, so the helper now just says so in one line. Nothing was broken; only the log message was wrong.
+
 ## 1.0.0 (2026-11-21)
 
 First version. Combines Better Clouds Toggle 1.2.1, Iris Glint Fix, Voxy Disabler on Vulkan 1.0.1 and Particle Transparency Fix into one mod for Minecraft 1.21.1, 1.21.11, 26.1.2, 26.2 and 26.3, with new fixes for Iris, Elytra Contrails, Touch'n Motion and ImageIO. Each module only runs when its mod is installed in a version the module was made for (exact version for modules that patch a mod or work around a bug of one version, same minor version for modules that only read a mod's settings), and the log lists the active modules at start-up ("... module active") and says why a module is off when its mod has another version.
