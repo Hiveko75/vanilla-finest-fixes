@@ -27,6 +27,9 @@ import org.slf4j.LoggerFactory;
  *       2.6.8's AirHaze particles, which crash the game without them. Mixin only.</li>
  *   <li><b>ImageIO</b> (imageio/, always on): ImageIO's disk cache is turned off at start-up, so mods
  *       reading textures through ImageIO no longer create a temp file per image on the render thread.</li>
+ *   <li><b>Home folders</b> (homefolders/, all versions): on an instance's first start, points
+ *       Screenshot Gallery, Litematica and Flashback Settings at the shared Minecraft folder. Runs
+ *       before launch ({@code preLaunch} entrypoint), not from here.</li>
  *   <li><b>Voxy</b> (voxy/, 26.2 and 26.3): lets the game stay on Vulkan with Voxy installed and
  *       switches Voxy off for that session. Mixins only.</li>
  * </ul>

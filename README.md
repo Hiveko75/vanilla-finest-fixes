@@ -109,6 +109,31 @@ frame hitches (about 10% of the slow frames). Vanilla Finest Helper turns that c
 images through ImageIO, so it isn't tied to one mod; block textures are tiny, so memory use doesn't
 change noticeably.
 
+## Home folders module (first start of an instance)
+
+The first time an instance starts, this module points the folder settings of three mods at the
+player's shared Minecraft folder, so all instances use the same folders:
+
+| Mod | Setting | Folder |
+|---|---|---|
+| Screenshot Gallery 2.x | the folder the gallery shows (`customScreenshotDir`) | `<minecraft>/screenshots` |
+| Litematica | custom schematic folder, switched on | `<minecraft>/schematics` |
+| Flashback Settings | Flashback's replay folder (`replayFolder`) | `<minecraft>/flashback/replays` |
+
+- `<minecraft>` is the launcher's Minecraft folder, found the way One World Folder finds it:
+  `%APPDATA%\.minecraft` on Windows, `~/Library/Application Support/minecraft` on macOS,
+  `~/.minecraft` on Linux. If it does not exist, nothing is changed.
+- It runs once per instance, before the mods read their settings, and leaves the file
+  `config/vanilla-finest-helper.home-folders.done`. After that it never changes these settings
+  again. Delete that file to let it run once more.
+- A folder the player already chose is kept: a setting that names a folder which exists on this
+  computer is not changed. An empty setting, or a folder that is not there, is replaced.
+- Only the settings files of installed mods are changed. A missing settings file is started from
+  the modpack's default for it (`config/modpack_defaults/config/`).
+- Screenshot Gallery's setting only decides which folder the gallery shows. The game still saves
+  new screenshots in the instance's own `screenshots` folder. Screenshot Gallery 1.x (Minecraft
+  1.21.1) has no such setting.
+
 ## Voxy module (needs Voxy; 26.2 and 26.3)
 
 Voxy only renders with OpenGL and forces Minecraft onto OpenGL even when Vulkan is selected. With
