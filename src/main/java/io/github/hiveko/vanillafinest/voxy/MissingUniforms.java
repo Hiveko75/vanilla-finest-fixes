@@ -42,6 +42,7 @@ public final class MissingUniforms {
     public static volatile String[] requested;
 
     private static final Set<String> LOGGED = ConcurrentHashMap.newKeySet();
+    private static final Set<Integer> CHECKED = ConcurrentHashMap.newKeySet();
     private static final Pattern IDENTIFIER = Pattern.compile("[A-Za-z_][A-Za-z0-9_]*");
     private static volatile boolean disabled;
 
@@ -70,7 +71,13 @@ public final class MissingUniforms {
                         .append(KNOWN_DEFAULTS.getOrDefault(name, "0.0")).append(";\n");
                 added.add(name);
             }
-            if (added.isEmpty()) return null;
+            if (added.isEmpty()) {
+                if (CHECKED.add(source.length())) {
+                    LOGGER.info("Voxy shader fix: nothing to add ({} uniforms listed by the pack; inIceCaves used: {}, in Voxy's uniforms: {}, declared: {})",
+                            listed == null ? "no" : listed.length, uses(source, "inIceCaves"), inBlock(block, "inIceCaves"), declares(source, "inIceCaves"));
+                }
+                return null;
+            }
             String key = String.join(",", added);
             if (LOGGED.add(key)) {
                 LOGGER.info("Voxy shader fix: the shader pack uses {}, which Iris does not provide on this Minecraft version; set to 0 (the pack's own default) so Voxy can compile it", key);

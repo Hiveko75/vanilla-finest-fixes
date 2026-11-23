@@ -61,5 +61,8 @@ public class MixinPlugin implements IMixinConfigPlugin {
 
     @Override
     public void postApply(String targetClassName, ClassNode targetClass, String mixinClassName, IMixinInfo mixinInfo) {
+        if (mixinClassName.contains(".mixin.voxy.Iris")) {
+            org.slf4j.LoggerFactory.getLogger("Vanilla Finest Helper").info("Voxy shader fix hooked into {}", targetClassName);
+        }
     }
 }
