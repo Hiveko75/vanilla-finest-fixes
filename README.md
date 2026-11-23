@@ -205,4 +205,4 @@ version's `CHANGELOG.md` section as notes. Locally (Java 25 and 21):
 ./gradlew -p mc1.21.1 build      # -> mc1.21.1/build/libs
 ```
 
-Client-side only. License: MIT.
+Client-side only. License: All rights reserved.

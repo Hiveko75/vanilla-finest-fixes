@@ -7,6 +7,7 @@
   - **Axiom 6.1.5:** its blueprint folder (otherwise always `config/axiom/blueprints` in the instance).
   - The **Home folders** module points both at the shared Minecraft folder once (`.minecraft/flashback/replays`, `.minecraft/axiom/blueprints`): on the first start of a new instance, and once in instances where it already ran before.
   - To change them, or to go back to the mod's own folder in the instance: **Mod Menu → Vanilla Finest Helper → Configure** (needs Cloth Config), with the choices "Shared Minecraft folder", "This instance (the mod's own)" and "Another folder". Or edit `config/vanilla-finest-helper.properties` (`folder.flashback.replays`, `folder.axiom.blueprints`; empty means the mod's own folder). Files are never moved. Flashback uses a change at once, Axiom after a restart.
+- **License:** all rights reserved (was MIT; no version had been given out).
 - The helper's settings now share one file, `config/vanilla-finest-helper.properties`; the Iris transparency flag no longer overwrites other settings in it.
 
 ## 1.0.0 (2026-11-22)
