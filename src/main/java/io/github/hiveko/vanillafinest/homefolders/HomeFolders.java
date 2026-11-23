@@ -104,7 +104,7 @@ public class HomeFolders implements PreLaunchEntrypoint {
     }
 
     /** The launcher's Minecraft folder, as One World Folder detects it; null on an unknown system. */
-    static Path minecraftFolder() {
+    public static Path minecraftFolder() {
         String os = System.getProperty("os.name", "").toLowerCase(Locale.ROOT);
         String userHome = System.getProperty("user.home", "");
         try {
