@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.1.0
+## 1.1.0 (2026-11-23)
 
 - **Folders (new, all versions):** two folders that their mods have no setting for can now be chosen.
   - **Flashback:** where replays are saved and listed. Flashback 0.43.6 (26.3, 26.2), 0.43.3 (26.1.2) and 0.39.10 (1.21.11, 1.21.1). When Flashback Settings is installed (26.3, 26.2), it keeps doing this with its own setting, and the helper stays out of it.
