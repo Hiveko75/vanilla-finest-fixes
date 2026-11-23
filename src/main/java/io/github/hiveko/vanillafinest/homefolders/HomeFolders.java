@@ -33,9 +33,9 @@ import org.slf4j.LoggerFactory;
  *   <li>Litematica: its schematic folder, {@code <minecraft>/schematics};</li>
  *   <li>Flashback Settings: Flashback's replay folder, {@code <minecraft>/flashback/replays}.</li>
  * </ul>
- * It also sets the two folders of the Folders module ({@link Folders}, which redirects them itself):
- * Flashback's replays when Flashback Settings is not installed, and Axiom's blueprints
- * ({@code <minecraft>/axiom/blueprints}); see {@link #folders()}.
+ * It also sets the two folders of the Folders module ({@link Folders}): Flashback's replays when
+ * Flashback Settings is not installed, and Axiom's blueprints ({@code <minecraft>/axiom/blueprints},
+ * Axiom's own setting); see {@link #folders()}.
  * The Minecraft folder is found the same way One World Folder finds it (%APPDATA%\.minecraft on
  * Windows, ~/Library/Application Support/minecraft on macOS, ~/.minecraft on Linux).
  *
@@ -85,21 +85,53 @@ public class HomeFolders implements PreLaunchEntrypoint {
      * Folders module ({@link Folders}): Flashback's replay folder (without Flashback Settings) and Axiom's
      * blueprint folder are set to the shared Minecraft folder once per instance, the first time the mod
      * is installed in a version the module was made for. That also happens once in instances where this
-     * module ran before these two existed. A value already in the settings file is kept, and after that
-     * one time the settings are never changed again.
+     * module ran before these two existed. A value the player already set is kept, and after that one
+     * time the settings are never changed again.
      */
     private static void folders() {
         Path home = minecraftFolder();
         if (home == null || !Files.isDirectory(home)) return;
         for (Folders.Folder folder : Folders.Folder.values()) {
+            if (!folder.active()) continue;
+            if (folder == Folders.AXIOM) {
+                axiomOnce();
+                continue;
+            }
             String doneKey = "homefolders." + folder.module + ".done";
-            if (HelperSettings.has(doneKey) || !folder.active()) continue;
+            if (HelperSettings.has(doneKey)) continue;
             if (!HelperSettings.has(folder.key)) {
                 Path shared = folder.shared();
                 Folders.set(folder, shared.toString());
                 LOGGER.info("Home folders module: {} folder is {}", folder.title, shared);
             }
             HelperSettings.set(doneKey, "true");
+        }
+    }
+
+    /**
+     * Axiom: its own blueprint folder setting (axiom.json, read by Axiom at start-up, after this). Kept when
+     * it already names an existing folder. 1.1.0 kept the folder in the helper's settings instead
+     * ("folder.axiom.blueprints"); that value is carried over when there is one.
+     */
+    private static void axiomOnce() {
+        String doneKey = "homefolders.axiom.config.done";
+        if (HelperSettings.has(doneKey)) return;
+        String current = Folders.value(Folders.AXIOM);
+        if (!isFolder(current)) {
+            String earlier = HelperSettings.get(Folders.AXIOM.key, "").trim();
+            String target = !earlier.isEmpty() ? earlier : Folders.AXIOM.shared().toString();
+            Folders.set(Folders.AXIOM, target);
+            LOGGER.info("Home folders module: {} folder is {}", Folders.AXIOM.title, target);
+        }
+        HelperSettings.set(doneKey, "true");
+    }
+
+    private static boolean isFolder(String text) {
+        if (text == null || text.isBlank()) return false;
+        try {
+            return Files.isDirectory(Paths.get(text.trim()));
+        } catch (InvalidPathException e) {
+            return false;
         }
     }
 

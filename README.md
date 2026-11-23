@@ -135,24 +135,29 @@ player's shared Minecraft folder, so all instances use the same folders:
 
 ## Folders module (Flashback, Axiom)
 
-Two folders their mods have no setting for:
+Two more folders the helper sets, with a settings screen:
 
-| Mod | Folder | Versions |
-|---|---|---|
-| Flashback (without Flashback Settings) | where replays are saved and listed (`Flashback.getReplayFolder`) | 0.43.6, 0.43.3, 0.39.10 |
-| Axiom | blueprint folder (set once in `Axiom.onInitialize`) | 6.1.5 |
+| Mod | Folder | How | Versions |
+|---|---|---|---|
+| Flashback (without Flashback Settings) | where replays are saved and listed | Flashback has no setting, so the helper redirects `Flashback.getReplayFolder`; the folder is `folder.flashback.replays` in `config/vanilla-finest-helper.properties` | 0.43.6, 0.43.3, 0.39.10 |
+| Axiom | blueprint folder | Axiom's own setting: `customPath` in the `blueprint` part of `config/axiom/axiom.json` (Axiom reads it once at start-up; the folder must exist, the helper creates it) | 6.1.x |
 
-- Each is one line in `config/vanilla-finest-helper.properties`: `folder.flashback.replays` and
-  `folder.axiom.blueprints`. Empty (or no line) means the mod's own folder in the instance; any other
-  value is the folder to use (a full path; it is created if needed).
-- The Home folders module sets both to the shared Minecraft folder once (see above).
+- Empty means the mod's own folder in the instance (`flashback/replays`, `config/axiom/blueprints`); any
+  other value is the folder to use (a full path).
+- The Home folders module sets both to the shared Minecraft folder once (see above). For Axiom, a
+  folder already set in Axiom's settings is kept.
 - **Settings screen:** Mod Menu → Vanilla Finest Helper → Configure, when Cloth Config is installed.
   Per folder: "Shared Minecraft folder", "This instance (the mod's own)" or "Another folder" with a path.
-  Without Cloth Config there is no Configure button; the file still works.
+  Without Cloth Config there is no Configure button; the files still work. Axiom's own settings screen
+  shows and changes the same Axiom setting.
 - Flashback reads the setting each time (a change counts at once); Axiom only at start-up.
 - When Flashback Settings is installed (26.3, 26.2), its own setting decides the replay folder and the
   helper's Flashback hook is not applied.
 - Files are never moved: replays or blueprints already saved stay where they are.
+- The Flashback hook is in its own mixin configuration (`vanilla-finest-helper.folders.mixins.json`,
+  not required), so if another mod ever loads Flashback's class too early, the hook is skipped with an
+  error in the log instead of stopping the game. Axiom cannot be hooked at all: its mixin plugin loads
+  Axiom's main class before other mods' mixins are prepared (that crashed 1.1.0 at start-up).
 
 ## Voxy module (needs Voxy; 26.2 and 26.3)
 

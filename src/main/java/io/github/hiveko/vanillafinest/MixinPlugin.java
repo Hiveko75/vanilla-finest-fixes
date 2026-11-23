@@ -43,7 +43,6 @@ public class MixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".mixin.voxy.")) return "voxy";
         if (mixinClassName.contains(".mixin.atmospherics.")) return "atmospherics";
         if (mixinClassName.endsWith(".mixin.folders.FlashbackMixin")) return "flashback";
-        if (mixinClassName.endsWith(".mixin.folders.AxiomMixin")) return "axiom";
         return null;
     }
 

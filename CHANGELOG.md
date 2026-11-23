@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.1.1 (2026-11-23)
+
+- **Fixed: the game did not start with Axiom installed** (1.1.0, every Minecraft version: "AxiomMixin …
+  target com.moulberry.axiom.Axiom was loaded too early"). Axiom's own mixin plugin loads its main class
+  before other mods' mixins are prepared, so the helper's hook on it could never work. Axiom has its own
+  blueprint folder setting (`blueprint.customPath` in `config/axiom/axiom.json`), so the Folders module
+  now writes that instead, from Home folders and from the settings screen. A folder 1.1.0 noted for Axiom
+  is carried over.
+- The Flashback replay-folder hook is now in its own, non-required mixin configuration: if a mod ever
+  loads Flashback's class too early, the hook is skipped (error in the log) instead of stopping the game.
+
 ## 1.1.0 (2026-11-23)
 
 - **Folders (new, all versions):** two folders that their mods have no setting for can now be chosen.

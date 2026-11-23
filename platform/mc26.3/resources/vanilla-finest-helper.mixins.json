@@ -12,9 +12,7 @@
     "voxy.VoxyClientMixin",
     "elytratrails.TrailManagerMixin",
     "touchnmotion.ShoulderCameraMixin",
-    "atmospherics.QuadParticleFeatureRendererMixin",
-    "folders.AxiomMixin",
-    "folders.FlashbackMixin"
+    "atmospherics.QuadParticleFeatureRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

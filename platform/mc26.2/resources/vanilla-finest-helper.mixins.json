@@ -10,9 +10,7 @@
     "voxy.MinecraftDeviceMixin",
     "voxy.VoxyClientMixin",
     "elytratrails.TrailManagerMixin",
-    "touchnmotion.ShoulderCameraMixin",
-    "folders.AxiomMixin",
-    "folders.FlashbackMixin"
+    "touchnmotion.ShoulderCameraMixin"
   ],
   "injectors": {
     "defaultRequire": 1

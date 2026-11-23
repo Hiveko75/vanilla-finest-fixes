@@ -21,6 +21,10 @@
     {
       "config": "vanilla-finest-helper.mixins.json",
       "environment": "client"
+    },
+    {
+      "config": "vanilla-finest-helper.folders.mixins.json",
+      "environment": "client"
     }
   ],
   "depends": {
