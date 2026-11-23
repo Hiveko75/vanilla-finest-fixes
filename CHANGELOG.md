@@ -10,6 +10,11 @@
   is carried over.
 - The Flashback replay-folder hook is now in its own, non-required mixin configuration: if a mod ever
   loads Flashback's class too early, the hook is skipped (error in the log) instead of stopping the game.
+- **Voxy (26.3, 26.2): shader packs' distant-terrain shaders compile again when the pack uses a value
+  Iris does not provide on this Minecraft version.** Complementary r5.10 (also with Euphoria Patches)
+  uses `inIceCaves` on 26.3, a biome that only exists from 26.4, so Voxy's shader failed ("undefined
+  variable"), distant terrain was drawn without the shader pack and an error appeared in chat. Such
+  values are now set to 0, the pack's own default; shaders that already compile are not changed.
 
 ## 1.1.0 (2026-11-23)
 

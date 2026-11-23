@@ -4,7 +4,9 @@
   "plugin": "io.github.hiveko.vanillafinest.MixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "folders.FlashbackMixin"
+    "folders.FlashbackMixin",
+    "voxy.IrisShaderPatchMixin",
+    "voxy.IrisVoxyRenderPipelineDataMixin"
   ],
   "injectors": {
     "defaultRequire": 1

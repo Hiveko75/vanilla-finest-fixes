@@ -154,7 +154,7 @@ Two more folders the helper sets, with a settings screen:
 - When Flashback Settings is installed (26.3, 26.2), its own setting decides the replay folder and the
   helper's Flashback hook is not applied.
 - Files are never moved: replays or blueprints already saved stay where they are.
-- The Flashback hook is in its own mixin configuration (`vanilla-finest-helper.folders.mixins.json`,
+- The Flashback hook is in its own mixin configuration (`vanilla-finest-helper.optional.mixins.json`,
   not required), so if another mod ever loads Flashback's class too early, the hook is skipped with an
   error in the log instead of stopping the game. Axiom cannot be hooked at all: its mixin plugin loads
   Axiom's main class before other mods' mixins are prepared (that crashed 1.1.0 at start-up).
@@ -164,6 +164,15 @@ Two more folders the helper sets, with a settings screen:
 Voxy only renders with OpenGL and forces Minecraft onto OpenGL even when Vulkan is selected. With
 this module the game stays on the selected Vulkan graphics API and Voxy is switched off for that
 session. On OpenGL nothing changes. It does not make Voxy work on Vulkan.
+
+**Shader packs' Voxy shaders:** a shader pack lists the uniforms its Voxy shader needs. Voxy leaves out
+any that Iris does not provide on this Minecraft version, and the pack's own default for it is not part
+of Voxy's shader, so the shader fails to compile ("undefined variable"), Voxy draws distant terrain
+without the shader pack and posts the error in chat. Complementary r5.10 on 26.3 does this with
+`inIceCaves` (ice caves only exist from Minecraft 26.4). The helper now declares each such uniform as
+`const float NAME = 0.0;` in front of the pack's code (the pack's own default), but only when the shader
+uses it and declares it nowhere, so a shader that already compiles is never changed. The log names
+the uniforms once ("Voxy shader fix: …").
 
 ## Files
 
@@ -198,6 +207,9 @@ together with the old separate mods.
   layer further out (priority 2000), creates the Vulkan device after Voxy's refusal and skips
   `VoxyClient.initVoxyClient()` on Vulkan. Real Vulkan failures are passed on, so Minecraft's normal
   fallback still works.
+- Voxy shader uniforms: `IrisShaderPatch.getUniformList()` is captured when Voxy builds the uniform
+  block; `IrisVoxyRenderPipelineData.opaqueFragPatch()` / `translucentFragPatch()` get the missing
+  declarations in front (`MissingUniforms`). Both mixins are in the non-required configuration.
 
 ## Building
 

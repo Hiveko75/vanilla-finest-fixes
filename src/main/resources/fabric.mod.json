@@ -23,7 +23,7 @@
       "environment": "client"
     },
     {
-      "config": "vanilla-finest-helper.folders.mixins.json",
+      "config": "vanilla-finest-helper.optional.mixins.json",
       "environment": "client"
     }
   ],
