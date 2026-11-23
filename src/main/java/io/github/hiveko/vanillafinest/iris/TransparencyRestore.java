@@ -1,13 +1,8 @@
 package io.github.hiveko.vanillafinest.iris;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.lang.reflect.Method;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Properties;
 
+import io.github.hiveko.vanillafinest.HelperSettings;
 import io.github.hiveko.vanillafinest.VanillaFinest;
 import io.github.hiveko.vanillafinest.mixin.iris.OptionInstanceAccessor;
 import net.fabricmc.loader.api.FabricLoader;
@@ -89,35 +84,15 @@ public final class TransparencyRestore {
         }
     }
 
-    private static Path file() {
-        return FabricLoader.getInstance().getConfigDir().resolve("vanilla-finest-helper.properties");
-    }
-
     private static boolean isRestore() {
         if (restore == null) {
-            restore = false;
-            Path file = file();
-            if (Files.isRegularFile(file)) {
-                Properties props = new Properties();
-                try (InputStream in = Files.newInputStream(file)) {
-                    props.load(in);
-                    restore = Boolean.parseBoolean(props.getProperty(KEY, "false"));
-                } catch (IOException e) {
-                    VanillaFinest.LOGGER.warn("Could not read {}", file, e);
-                }
-            }
+            restore = Boolean.parseBoolean(HelperSettings.get(KEY, "false"));
         }
         return restore;
     }
 
     private static void setRestore(boolean value) {
         restore = value;
-        Properties props = new Properties();
-        props.setProperty(KEY, Boolean.toString(value));
-        try (OutputStream out = Files.newOutputStream(file())) {
-            props.store(out, "Vanilla Finest Helper: true while better transparency is off only because shaders are on");
-        } catch (IOException e) {
-            VanillaFinest.LOGGER.warn("Could not write {}", file(), e);
-        }
+        HelperSettings.set(KEY, Boolean.toString(value));
     }
 }

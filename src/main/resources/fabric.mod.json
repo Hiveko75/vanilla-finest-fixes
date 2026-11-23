@@ -14,7 +14,8 @@
   "environment": "client",
   "entrypoints": {
     "client": ["io.github.hiveko.vanillafinest.VanillaFinest"],
-    "preLaunch": ["io.github.hiveko.vanillafinest.homefolders.HomeFolders"]
+    "preLaunch": ["io.github.hiveko.vanillafinest.homefolders.HomeFolders"],
+    "modmenu": ["io.github.hiveko.vanillafinest.config.ModMenuIntegration"]
   },
   "mixins": [
     {

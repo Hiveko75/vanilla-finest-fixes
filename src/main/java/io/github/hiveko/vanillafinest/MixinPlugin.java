@@ -3,6 +3,7 @@ package io.github.hiveko.vanillafinest;
 import java.util.List;
 import java.util.Set;
 
+import net.fabricmc.loader.api.FabricLoader;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -11,7 +12,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
  * Applies each module's mixins only when the mod it belongs to is installed in a version the module was
  * made for ({@link ModuleCheck}): mixin.iris.* needs Iris (GlintTexturesMixin: the Iris version with the
  * glint bug), mixin.voxy.* Voxy, mixin.elytratrails.* Elytra Contrails, mixin.touchnmotion.* Touch'n
- * Motion and mixin.atmospherics.* Atmospherics. Otherwise they are skipped, so nothing fails at startup.
+ * Motion, mixin.atmospherics.* Atmospherics, and mixin.folders.* Flashback (not with Flashback Settings)
+ * and Axiom. Otherwise they are skipped, so nothing fails at startup.
  */
 public class MixinPlugin implements IMixinConfigPlugin {
     @Override
@@ -26,6 +28,9 @@ public class MixinPlugin implements IMixinConfigPlugin {
     @Override
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         String key = moduleKey(mixinClassName);
+        if ("flashback".equals(key) && FabricLoader.getInstance().isModLoaded("flashback-settings")) {
+            return false; // Flashback Settings sets the replay folder itself
+        }
         return key == null || ModuleCheck.matches(key);
     }
 
@@ -37,6 +42,8 @@ public class MixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".mixin.touchnmotion.")) return "touch_n_motion";
         if (mixinClassName.contains(".mixin.voxy.")) return "voxy";
         if (mixinClassName.contains(".mixin.atmospherics.")) return "atmospherics";
+        if (mixinClassName.endsWith(".mixin.folders.FlashbackMixin")) return "flashback";
+        if (mixinClassName.endsWith(".mixin.folders.AxiomMixin")) return "axiom";
         return null;
     }
 

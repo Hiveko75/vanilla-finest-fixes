@@ -133,6 +133,27 @@ player's shared Minecraft folder, so all instances use the same folders:
 - With Screenshot Gallery's folder set, the game saves new screenshots there and the gallery shows
   that folder. Screenshot Gallery 1.x (Minecraft 1.21.1) has no such setting.
 
+## Folders module (Flashback, Axiom)
+
+Two folders their mods have no setting for:
+
+| Mod | Folder | Versions |
+|---|---|---|
+| Flashback (without Flashback Settings) | where replays are saved and listed (`Flashback.getReplayFolder`) | 0.43.6, 0.43.3, 0.39.10 |
+| Axiom | blueprint folder (set once in `Axiom.onInitialize`) | 6.1.5 |
+
+- Each is one line in `config/vanilla-finest-helper.properties`: `folder.flashback.replays` and
+  `folder.axiom.blueprints`. Empty (or no line) means the mod's own folder in the instance; any other
+  value is the folder to use (a full path; it is created if needed).
+- The Home folders module sets both to the shared Minecraft folder once (see above).
+- **Settings screen:** Mod Menu → Vanilla Finest Helper → Configure, when Cloth Config is installed.
+  Per folder: "Shared Minecraft folder", "This instance (the mod's own)" or "Another folder" with a path.
+  Without Cloth Config there is no Configure button; the file still works.
+- Flashback reads the setting each time (a change counts at once); Axiom only at start-up.
+- When Flashback Settings is installed (26.3, 26.2), its own setting decides the replay folder and the
+  helper's Flashback hook is not applied.
+- Files are never moved: replays or blueprints already saved stay where they are.
+
 ## Voxy module (needs Voxy; 26.2 and 26.3)
 
 Voxy only renders with OpenGL and forces Minecraft onto OpenGL even when Vulkan is selected. With

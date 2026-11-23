@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.0
+
+- **Folders (new, all versions):** two folders that their mods have no setting for can now be chosen.
+  - **Flashback:** where replays are saved and listed. Flashback 0.43.6 (26.3, 26.2), 0.43.3 (26.1.2) and 0.39.10 (1.21.11, 1.21.1). When Flashback Settings is installed (26.3, 26.2), it keeps doing this with its own setting, and the helper stays out of it.
+  - **Axiom 6.1.5:** its blueprint folder (otherwise always `config/axiom/blueprints` in the instance).
+  - The **Home folders** module points both at the shared Minecraft folder once (`.minecraft/flashback/replays`, `.minecraft/axiom/blueprints`): on the first start of a new instance, and once in instances where it already ran before.
+  - To change them, or to go back to the mod's own folder in the instance: **Mod Menu → Vanilla Finest Helper → Configure** (needs Cloth Config), with the choices "Shared Minecraft folder", "This instance (the mod's own)" and "Another folder". Or edit `config/vanilla-finest-helper.properties` (`folder.flashback.replays`, `folder.axiom.blueprints`; empty means the mod's own folder). Files are never moved. Flashback uses a change at once, Axiom after a restart.
+- The helper's settings now share one file, `config/vanilla-finest-helper.properties`; the Iris transparency flag no longer overwrites other settings in it.
+
 ## 1.0.0 (2026-11-22)
 
 First version. Combines Better Clouds Toggle 1.2.1, Iris Glint Fix, Voxy Disabler on Vulkan 1.0.1 and Particle Transparency Fix into one mod for Minecraft 1.21.1, 1.21.11, 26.1.2, 26.2 and 26.3, with new fixes for Iris, Elytra Contrails, Touch'n Motion and ImageIO, and a new Home folders module. Each module only runs when its mod is installed in a version the module was made for (exact version for modules that patch a mod or work around a bug of one version, same minor version for modules that only read a mod's settings), and the log lists the active modules at start-up ("... module active") and says why a module is off when its mod has another version.

@@ -1,6 +1,7 @@
 package io.github.hiveko.vanillafinest;
 
 import io.github.hiveko.vanillafinest.clouds.CloudsToggle;
+import io.github.hiveko.vanillafinest.folders.Folders;
 import io.github.hiveko.vanillafinest.imageio.ImageIOCache;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
@@ -30,6 +31,9 @@ import org.slf4j.LoggerFactory;
  *   <li><b>Home folders</b> (homefolders/, all versions): on an instance's first start, points
  *       Screenshot Gallery, Litematica and Flashback Settings at the shared Minecraft folder. Runs
  *       before launch ({@code preLaunch} entrypoint), not from here.</li>
+ *   <li><b>Folders</b> (folders/, all versions): Flashback's replay folder (without Flashback Settings)
+ *       and Axiom's blueprint folder, from the helper's settings. Mixins; settings screen in config/
+ *       (Mod Menu with Cloth Config).</li>
  *   <li><b>Voxy</b> (voxy/, 26.2 and 26.3): lets the game stay on Vulkan with Voxy installed and
  *       switches Voxy off for that session. Mixins only.</li>
  * </ul>
@@ -82,6 +86,15 @@ public class VanillaFinest implements ClientModInitializer {
 
         if (check("Voxy", "voxy")) {
             LOGGER.info("Voxy module active");
+        }
+
+        for (Folders.Folder folder : Folders.Folder.values()) {
+            if (folder.module.equals("flashback") && loader.isModLoaded("flashback-settings")) continue;
+            if (check(folder.title, folder.module)) {
+                String value = Folders.value(folder);
+                LOGGER.info("Folders module active: {} in {}", folder.title,
+                        value.isEmpty() ? "the mod's own folder in this instance" : value);
+            }
         }
     }
 

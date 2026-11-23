@@ -10,6 +10,8 @@ import java.util.Locale;
 import java.util.Optional;
 
 import com.google.gson.Gson;
+import io.github.hiveko.vanillafinest.HelperSettings;
+import io.github.hiveko.vanillafinest.folders.Folders;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -31,6 +33,9 @@ import org.slf4j.LoggerFactory;
  *   <li>Litematica: its schematic folder, {@code <minecraft>/schematics};</li>
  *   <li>Flashback Settings: Flashback's replay folder, {@code <minecraft>/flashback/replays}.</li>
  * </ul>
+ * It also sets the two folders of the Folders module ({@link Folders}, which redirects them itself):
+ * Flashback's replays when Flashback Settings is not installed, and Axiom's blueprints
+ * ({@code <minecraft>/axiom/blueprints}); see {@link #folders()}.
  * The Minecraft folder is found the same way One World Folder finds it (%APPDATA%\.minecraft on
  * Windows, ~/Library/Application Support/minecraft on macOS, ~/.minecraft on Linux).
  *
@@ -56,6 +61,7 @@ public class HomeFolders implements PreLaunchEntrypoint {
 
     private static void run(FabricLoader loader) throws IOException {
         Path config = loader.getConfigDir();
+        folders();
         Path marker = config.resolve(MARKER);
         if (Files.exists(marker)) return;
 
@@ -73,6 +79,28 @@ public class HomeFolders implements PreLaunchEntrypoint {
         }
         Files.createDirectories(config);
         Files.writeString(marker, done.toString(), StandardCharsets.UTF_8);
+    }
+
+    /**
+     * Folders module ({@link Folders}): Flashback's replay folder (without Flashback Settings) and Axiom's
+     * blueprint folder are set to the shared Minecraft folder once per instance, the first time the mod
+     * is installed in a version the module was made for. That also happens once in instances where this
+     * module ran before these two existed. A value already in the settings file is kept, and after that
+     * one time the settings are never changed again.
+     */
+    private static void folders() {
+        Path home = minecraftFolder();
+        if (home == null || !Files.isDirectory(home)) return;
+        for (Folders.Folder folder : Folders.Folder.values()) {
+            String doneKey = "homefolders." + folder.module + ".done";
+            if (HelperSettings.has(doneKey) || !folder.active()) continue;
+            if (!HelperSettings.has(folder.key)) {
+                Path shared = folder.shared();
+                Folders.set(folder, shared.toString());
+                LOGGER.info("Home folders module: {} folder is {}", folder.title, shared);
+            }
+            HelperSettings.set(doneKey, "true");
+        }
     }
 
     /** The launcher's Minecraft folder, as One World Folder detects it; null on an unknown system. */

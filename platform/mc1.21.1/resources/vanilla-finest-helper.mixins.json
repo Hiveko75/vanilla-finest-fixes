@@ -8,7 +8,9 @@
     "iris.OptionInstanceMixin",
     "iris.LevelRendererMixin",
     "elytratrails.TrailManagerMixin",
-    "touchnmotion.ShoulderCameraMixin"
+    "touchnmotion.ShoulderCameraMixin",
+    "folders.AxiomMixin",
+    "folders.FlashbackMixin"
   ],
   "injectors": {
     "defaultRequire": 1
