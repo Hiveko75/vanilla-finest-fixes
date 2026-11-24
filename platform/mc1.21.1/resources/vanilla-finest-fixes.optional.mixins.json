@@ -1,0 +1,10 @@
+{
+  "required": false,
+  "package": "io.github.hiveko.vanillafinest.fixes.mixin",
+  "plugin": "io.github.hiveko.vanillafinest.fixes.MixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

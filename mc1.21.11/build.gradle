@@ -35,9 +35,6 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     // Compile-only: Elytra Contrails 1.4.9 (Modrinth version 9KJRbgAa), for the Elytra Contrails module; not bundled.
     modCompileOnly "maven.modrinth:elytra-contrails-mod:9KJRbgAa"
-    // Compile-only: Mod Menu and Cloth Config (Modrinth versions Tyk71iSw, xuX40TN5), for the optional settings screen; not bundled.
-    modCompileOnly("maven.modrinth:modmenu:Tyk71iSw") { transitive = false }
-    modCompileOnly("maven.modrinth:cloth-config:xuX40TN5") { transitive = false }
 }
 
 processResources {

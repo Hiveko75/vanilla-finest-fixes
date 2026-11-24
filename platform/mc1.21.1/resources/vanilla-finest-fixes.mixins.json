@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "io.github.hiveko.vanillafinest.fixes.mixin",
+  "plugin": "io.github.hiveko.vanillafinest.fixes.MixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "iris.OptionInstanceAccessor",
+    "iris.OptionInstanceMixin",
+    "iris.LevelRendererMixin",
+    "elytratrails.TrailManagerMixin",
+    "touchnmotion.ShoulderCameraMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

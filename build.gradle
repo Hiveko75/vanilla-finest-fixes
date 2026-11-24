@@ -33,9 +33,6 @@ dependencies {
     // Iris, Better Clouds and Voxy are not needed at compile time: they are reached by name at run time.
     // Elytra Contrails is needed to compile the Elytra Contrails module (elytratrails= line); not bundled.
     compileOnly(v.elytratrails)
-    // Mod Menu and Cloth Config: only for the optional settings screen; not bundled.
-    compileOnly(v.modmenu) { transitive = false }
-    compileOnly(v.clothconfig) { transitive = false }
 }
 
 processResources {

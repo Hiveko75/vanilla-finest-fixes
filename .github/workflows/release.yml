@@ -50,4 +50,4 @@ jobs:
           # Notes: the "## <version>" section of CHANGELOG.md
           awk -v v="$VERSION" '/^## /{f = (index($0, "## " v " ") == 1 || $0 == "## " v)} f' CHANGELOG.md | tail -n +2 > notes.md
           [ -s notes.md ] || { echo "No CHANGELOG section for $VERSION"; exit 1; }
-          gh release create "$TAG" dist/*.jar --target "$GITHUB_SHA" --title "Vanilla Finest Helper $TAG" --notes-file notes.md
+          gh release create "$TAG" dist/*.jar --target "$GITHUB_SHA" --title "Vanilla Finest Fixes $TAG" --notes-file notes.md

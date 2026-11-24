@@ -1,7 +1,11 @@
-# Vanilla Finest Helper
+# Vanilla Finest Fixes
 
-Small client-side fixes and tweaks for the Vanilla Finest modpacks, in one Fabric mod. It replaces
-Better Clouds Toggle, Iris Glint Fix and Voxy Disabler on Vulkan.
+Client-side fixes and small tweaks for the mods in the Vanilla Finest modpacks, in one Fabric mod. Each
+fix is bound to the mod versions the packs ship, so this mod changes with the packs. It replaces Better
+Clouds Toggle, Iris Glint Fix, Voxy Disabler on Vulkan and Particle Transparency Fix.
+
+The players' side of the packs (folders, and later the setup screen) is a separate mod,
+[Vanilla Finest Helper](https://github.com/Hiveko75/vanilla-finest-helper).
 
 Each module only runs when the mod it works with is installed, **in a version the module was made
 for**. Without that mod, or with another version of it, the module does nothing and the game starts
@@ -12,7 +16,7 @@ module active`, and a module whose mod has another version says why it is off, f
 ## Version check
 
 The versions are listed per Minecraft version in
-`platform/mc<version>/resources/vanilla-finest-helper.modules.properties`, compared with the number
+`platform/mc<version>/resources/vanilla-finest-fixes.modules.properties`, compared with the number
 part of the mod's version (`1.6.10` for `1.6.10-26.3`):
 
 - Modules that change a mod's code or work around a bug of one version need that exact version:
@@ -39,7 +43,7 @@ part of the mod's version (`1.6.10` for `1.6.10-26.3`):
   shaders were enabled, it stays off.
   - 1.21.11 and 26.x: the *Improved Transparency* option.
   - 1.21.1: the *Fabulous!* graphics mode (Iris lowers it to Fancy).
-  - The flag is kept in `config/vanilla-finest-helper.properties`, so it also works after a restart
+  - The flag is kept in `config/vanilla-finest-fixes.properties`, so it also works after a restart
     with shaders on.
 - **Enchantment glint crash fix (26.3 only).** Iris 1.11.7 can crash with "Close the existing
   render pass before performing additional commands" while it loads the glint texture
@@ -104,66 +108,10 @@ with 2.6.8, so a fixed version is left alone. Replaces the separate Particle Tra
 Java's ImageIO buffers images it reads from a stream in a temporary file on disk by default. Xaero's
 World Map reads block textures that way on the render thread whenever it meets a block it hasn't
 coloured yet, so exploring created and deleted a temp file per texture, which showed up in spark as
-frame hitches (about 10% of the slow frames). Vanilla Finest Helper turns that cache off at start-up
+frame hitches (about 10% of the slow frames). Vanilla Finest Fixes turns that cache off at start-up
 (`ImageIO.setUseCache(false)`), so ImageIO buffers in memory instead. This helps every mod that reads
 images through ImageIO, so it isn't tied to one mod; block textures are tiny, so memory use doesn't
 change noticeably.
-
-## Home folders module (first start of an instance, off by default)
-
-**Off by default since 1.1.1:** screenshots, schematics, replays and blueprints stay in the
-instance's own folders (each mod's default). To use the shared Minecraft folder instead, set
-`homefolders.enabled=true` in `config/vanilla-finest-helper.properties`; the module then runs once
-on the next start. Instances where it already ran (1.0.0, 1.1.0) keep the folders it set.
-
-When switched on, the first time an instance starts, this module points the folder settings of three
-mods at the player's shared Minecraft folder, so all instances use the same folders:
-
-| Mod | Setting | Folder |
-|---|---|---|
-| Screenshot Gallery 2.x | screenshot folder, for saving and for the gallery (`customScreenshotDir`) | `<minecraft>/screenshots` |
-| Litematica | custom schematic folder, switched on | `<minecraft>/schematics` |
-| Flashback Settings | Flashback's replay folder (`replayFolder`) | `<minecraft>/flashback/replays` |
-
-- `<minecraft>` is the launcher's Minecraft folder, found the way One World Folder finds it:
-  `%APPDATA%\.minecraft` on Windows, `~/Library/Application Support/minecraft` on macOS,
-  `~/.minecraft` on Linux. If it does not exist, nothing is changed.
-- It runs once per instance, before the mods read their settings, and leaves the file
-  `config/vanilla-finest-helper.home-folders.done`. After that it never changes these settings
-  again. Delete that file to let it run once more.
-- A folder the player already chose is kept: a setting that names a folder which exists on this
-  computer is not changed. An empty setting, or a folder that is not there, is replaced.
-- Only the settings files of installed mods are changed. A missing settings file is started from
-  the modpack's default for it (`config/modpack_defaults/config/`).
-- With Screenshot Gallery's folder set, the game saves new screenshots there and the gallery shows
-  that folder. Screenshot Gallery 1.x (Minecraft 1.21.1) has no such setting.
-
-## Folders module (Flashback, Axiom)
-
-Two more folders the helper sets, with a settings screen:
-
-| Mod | Folder | How | Versions |
-|---|---|---|---|
-| Flashback (without Flashback Settings) | where replays are saved and listed | Flashback has no setting, so the helper redirects `Flashback.getReplayFolder`; the folder is `folder.flashback.replays` in `config/vanilla-finest-helper.properties` | 0.43.6, 0.43.3, 0.39.10 |
-| Axiom | blueprint folder | Axiom's own setting: `customPath` in the `blueprint` part of `config/axiom/axiom.json` (Axiom reads it once at start-up; the folder must exist, the helper creates it) | 6.1.x |
-
-- Empty means the mod's own folder in the instance (`flashback/replays`, `config/axiom/blueprints`); any
-  other value is the folder to use (a full path).
-- When switched on, the Home folders module sets both to the shared Minecraft folder once (see
-  above). For Axiom, a folder already set in Axiom's settings is kept. By default both stay empty
-  (the instance's own folders).
-- **Settings screen:** Mod Menu → Vanilla Finest Helper → Configure, when Cloth Config is installed.
-  Per folder: "Shared Minecraft folder", "This instance (the mod's own)" or "Another folder" with a path.
-  Without Cloth Config there is no Configure button; the files still work. Axiom's own settings screen
-  shows and changes the same Axiom setting.
-- Flashback reads the setting each time (a change counts at once); Axiom only at start-up.
-- When Flashback Settings is installed (26.3, 26.2), its own setting decides the replay folder and the
-  helper's Flashback hook is not applied.
-- Files are never moved: replays or blueprints already saved stay where they are.
-- The Flashback hook is in its own mixin configuration (`vanilla-finest-helper.optional.mixins.json`,
-  not required), so if another mod ever loads Flashback's class too early, the hook is skipped with an
-  error in the log instead of stopping the game. Axiom cannot be hooked at all: its mixin plugin loads
-  Axiom's main class before other mods' mixins are prepared (that crashed 1.1.0 at start-up).
 
 ## Voxy module (needs Voxy; 26.2 and 26.3)
 
@@ -176,7 +124,7 @@ any that Iris does not provide on this Minecraft version, and the pack's own def
 of Voxy's shader, so the shader fails to compile ("undefined variable"), Voxy draws distant terrain
 without the shader pack and posts the error in chat. Complementary r5.10 on 26.3 does this with
 `inIceCaves` (ice caves only exist from Minecraft 26.4; its `voxy.json` only asks for it on 26.4, but
-its volumetric light code uses it from 26.2 on). The helper declares such uniforms as
+its volumetric light code uses it from 26.2 on). Vanilla Finest Fixes declares such uniforms as
 `const float NAME = 0.0;` in front of the pack's code (the pack's own default): every uniform the pack
 asked for that Voxy left out, plus a short list of known ones like `inIceCaves`, but only when the shader
 uses it and declares it nowhere, so a shader that already compiles is never changed. The log names
@@ -186,11 +134,11 @@ the uniforms once ("Voxy shader fix: …").
 
 | File | Minecraft | Modules |
 |---|---|---|
-| `vanilla-finest-helper-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO |
-| `vanilla-finest-helper-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO |
-| `vanilla-finest-helper-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
-| `vanilla-finest-helper-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
-| `vanilla-finest-helper-*+mc1.21.1.jar` | 1.21, 1.21.1 | Iris, Better Clouds, Elytra Contrails (player trails), Touch'n Motion, ImageIO |
+| `vanilla-finest-fixes-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO |
+| `vanilla-finest-fixes-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO |
+| `vanilla-finest-fixes-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
+| `vanilla-finest-fixes-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
+| `vanilla-finest-fixes-*+mc1.21.1.jar` | 1.21, 1.21.1 | Iris, Better Clouds, Elytra Contrails (player trails), Touch'n Motion, ImageIO |
 
 The mod declares that it provides `better-clouds-toggle`, `iris-glint-fix`,
 `voxy-disabler-on-vulkan` and `particle-transparency-fix` (as far as that version contains them), so Fabric refuses to load it
@@ -217,7 +165,8 @@ together with the old separate mods.
   fallback still works.
 - Voxy shader uniforms: `IrisShaderPatch.getUniformList()` is captured when Voxy builds the uniform
   block; `IrisVoxyRenderPipelineData.opaqueFragPatch()` / `translucentFragPatch()` get the missing
-  declarations in front (`MissingUniforms`). Both mixins are in the non-required configuration.
+  declarations in front (`MissingUniforms`). Both mixins are in the non-required configuration
+  (`vanilla-finest-fixes.optional.mixins.json`), so a problem there only logs an error.
 
 ## Building
 
@@ -230,4 +179,5 @@ version's `CHANGELOG.md` section as notes. Locally (Java 25 and 21):
 ./gradlew -p mc1.21.1 build      # -> mc1.21.1/build/libs
 ```
 
-Client-side only. License: All rights reserved.
+Client-side only. Settings (only the Iris module keeps one) are in `config/vanilla-finest-fixes.properties`.
+License: All rights reserved.

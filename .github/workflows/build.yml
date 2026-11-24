@@ -54,5 +54,5 @@ jobs:
       - run: ls -l dist
       - uses: actions/upload-artifact@v4
         with:
-          name: vanilla-finest-helper
+          name: vanilla-finest-fixes
           path: dist/*.jar

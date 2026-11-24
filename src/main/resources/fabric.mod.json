@@ -1,29 +1,27 @@
 {
   "schemaVersion": 1,
-  "id": "vanilla-finest-helper",
+  "id": "vanilla-finest-fixes",
   "version": "${version}",
-  "name": "Vanilla Finest Helper",
-  "description": "Small fixes and tweaks for the Vanilla Finest modpacks. Iris: turns Improved Transparency (Fabulous graphics on 1.21.1) back on when shaders are disabled, and on 26.3 fixes the enchantment glint crash. Better Clouds: toggle key, automatic Mellow cloud preset, clouds hidden behind Voxy terrain. Elytra Contrails: fewer trail checks. Touch'n Motion: riders look where the player faces with third-person camera mods. Atmospherics (26.3): no AirHaze crash with Improved Transparency. ImageIO: no temp file per image read. Voxy (26.2+): keeps Vulkan selected and switches Voxy off for that session. Home folders: on an instance's first start, Screenshot Gallery, Litematica and Flashback Settings are pointed at the shared Minecraft folder. Each module only runs when its mod is installed in a version it was made for.",
+  "name": "Vanilla Finest Fixes",
+  "description": "Fixes and small tweaks for the mods in the Vanilla Finest modpacks, each module bound to the mod versions the packs ship. Iris: turns Improved Transparency (Fabulous graphics on 1.21.1) back on when shaders are disabled, and on 26.3 fixes the enchantment glint crash. Better Clouds: toggle key, automatic Mellow cloud preset, clouds hidden behind Voxy terrain. Elytra Contrails: fewer trail checks. Touch'n Motion: riders look where the player faces with third-person camera mods. Atmospherics (26.3): no AirHaze crash with Improved Transparency. ImageIO: no temp file per image read. Voxy (26.2+): keeps Vulkan selected and switches Voxy off for that session; shader packs' distant-terrain shaders compile when they use a value Iris does not have on this Minecraft version. Each module only runs when its mod is installed in a version it was made for.",
   "authors": ["Hiveko"],
   "contact": {
-    "sources": "https://github.com/Hiveko75/vanilla-finest-helper",
-    "issues": "https://github.com/Hiveko75/vanilla-finest-helper/issues"
+    "sources": "https://github.com/Hiveko75/vanilla-finest-fixes",
+    "issues": "https://github.com/Hiveko75/vanilla-finest-fixes/issues"
   },
   "license": "ARR",
-  "icon": "assets/vanilla-finest-helper/icon.png",
+  "icon": "assets/vanilla-finest-fixes/icon.png",
   "environment": "client",
   "entrypoints": {
-    "client": ["io.github.hiveko.vanillafinest.VanillaFinest"],
-    "preLaunch": ["io.github.hiveko.vanillafinest.homefolders.HomeFolders"],
-    "modmenu": ["io.github.hiveko.vanillafinest.config.ModMenuIntegration"]
+    "client": ["io.github.hiveko.vanillafinest.fixes.VanillaFinestFixes"]
   },
   "mixins": [
     {
-      "config": "vanilla-finest-helper.mixins.json",
+      "config": "vanilla-finest-fixes.mixins.json",
       "environment": "client"
     },
     {
-      "config": "vanilla-finest-helper.optional.mixins.json",
+      "config": "vanilla-finest-fixes.optional.mixins.json",
       "environment": "client"
     }
   ],

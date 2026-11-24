@@ -1,0 +1,13 @@
+{
+  "required": false,
+  "package": "io.github.hiveko.vanillafinest.fixes.mixin",
+  "plugin": "io.github.hiveko.vanillafinest.fixes.MixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "voxy.IrisShaderPatchMixin",
+    "voxy.IrisVoxyRenderPipelineDataMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

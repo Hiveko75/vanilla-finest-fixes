@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "package": "io.github.hiveko.vanillafinest.fixes.mixin",
+  "plugin": "io.github.hiveko.vanillafinest.fixes.MixinPlugin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "iris.OptionInstanceAccessor",
+    "iris.OptionInstanceMixin",
+    "iris.LevelExtractorMixin",
+    "iris.GlintTexturesMixin",
+    "voxy.MinecraftDeviceMixin",
+    "voxy.VoxyClientMixin",
+    "elytratrails.TrailManagerMixin",
+    "touchnmotion.ShoulderCameraMixin",
+    "atmospherics.QuadParticleFeatureRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
