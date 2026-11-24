@@ -109,10 +109,15 @@ frame hitches (about 10% of the slow frames). Vanilla Finest Helper turns that c
 images through ImageIO, so it isn't tied to one mod; block textures are tiny, so memory use doesn't
 change noticeably.
 
-## Home folders module (first start of an instance)
+## Home folders module (first start of an instance, off by default)
 
-The first time an instance starts, this module points the folder settings of three mods at the
-player's shared Minecraft folder, so all instances use the same folders:
+**Off by default since 1.1.1:** screenshots, schematics, replays and blueprints stay in the
+instance's own folders (each mod's default). To use the shared Minecraft folder instead, set
+`homefolders.enabled=true` in `config/vanilla-finest-helper.properties`; the module then runs once
+on the next start. Instances where it already ran (1.0.0, 1.1.0) keep the folders it set.
+
+When switched on, the first time an instance starts, this module points the folder settings of three
+mods at the player's shared Minecraft folder, so all instances use the same folders:
 
 | Mod | Setting | Folder |
 |---|---|---|
@@ -144,8 +149,9 @@ Two more folders the helper sets, with a settings screen:
 
 - Empty means the mod's own folder in the instance (`flashback/replays`, `config/axiom/blueprints`); any
   other value is the folder to use (a full path).
-- The Home folders module sets both to the shared Minecraft folder once (see above). For Axiom, a
-  folder already set in Axiom's settings is kept.
+- When switched on, the Home folders module sets both to the shared Minecraft folder once (see
+  above). For Axiom, a folder already set in Axiom's settings is kept. By default both stay empty
+  (the instance's own folders).
 - **Settings screen:** Mod Menu → Vanilla Finest Helper → Configure, when Cloth Config is installed.
   Per folder: "Shared Minecraft folder", "This instance (the mod's own)" or "Another folder" with a path.
   Without Cloth Config there is no Configure button; the files still work. Axiom's own settings screen

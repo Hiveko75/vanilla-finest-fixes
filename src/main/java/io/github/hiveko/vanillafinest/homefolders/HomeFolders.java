@@ -39,6 +39,10 @@ import org.slf4j.LoggerFactory;
  * The Minecraft folder is found the same way One World Folder finds it (%APPDATA%\.minecraft on
  * Windows, ~/Library/Application Support/minecraft on macOS, ~/.minecraft on Linux).
  *
+ * <p><b>Off by default</b> (since 1.1.1): folders stay in the instance (the mods' own defaults) unless
+ * {@value #ENABLED_KEY}{@code =true} is set in {@code config/vanilla-finest-helper.properties}. Instances
+ * where it already ran keep the folders it set.
+ *
  * <p>It runs once per instance: {@value #MARKER} in the config folder records that it ran, and after
  * that the settings are never touched again, whatever the player sets. A setting the player already
  * chose (a folder that exists on this computer) is kept even on that first run. It runs before the
@@ -48,6 +52,8 @@ import org.slf4j.LoggerFactory;
 public class HomeFolders implements PreLaunchEntrypoint {
     private static final Logger LOGGER = LoggerFactory.getLogger("Vanilla Finest Helper");
     static final String MARKER = "vanilla-finest-helper.home-folders.done";
+    /** Off by default since 1.1.1: folders stay in the instance unless the player asks for the shared folder. */
+    public static final String ENABLED_KEY = "homefolders.enabled";
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     @Override
@@ -61,6 +67,11 @@ public class HomeFolders implements PreLaunchEntrypoint {
 
     private static void run(FabricLoader loader) throws IOException {
         Path config = loader.getConfigDir();
+        if (!Boolean.parseBoolean(HelperSettings.get(ENABLED_KEY, "false").trim())) {
+            LOGGER.info("Home folders module off: folders stay in this instance (set {}=true in {} to use the shared Minecraft folder)",
+                    ENABLED_KEY, HelperSettings.file().getFileName());
+            return;
+        }
         folders();
         Path marker = config.resolve(MARKER);
         if (Files.exists(marker)) return;

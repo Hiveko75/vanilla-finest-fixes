@@ -2,6 +2,9 @@
 
 ## 1.1.1 (2026-11-23)
 
+- **Home folders is now off by default:** screenshots, schematics, replays and blueprints stay in the
+  instance's own folders. Set `homefolders.enabled=true` in `config/vanilla-finest-helper.properties`
+  to use the shared Minecraft folder as before. Instances where it already ran keep their folders.
 - **Fixed: the game did not start with Axiom installed** (1.1.0, every Minecraft version: "AxiomMixin …
   target com.moulberry.axiom.Axiom was loaded too early"). Axiom's own mixin plugin loads its main class
   before other mods' mixins are prepared, so the helper's hook on it could never work. Axiom has its own
