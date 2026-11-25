@@ -20,20 +20,22 @@ The versions are listed per Minecraft version in
 part of the mod's version (`1.6.10` for `1.6.10-26.3`):
 
 - Modules that change a mod's code or work around a bug of one version need that exact version:
-  Elytra Contrails, Touch'n Motion (1.0.5), Voxy, Atmospherics (2.6.8) and Iris' glint fix
-  (1.11.7). When that mod is updated, the module switches itself off until it is checked against the
+  Elytra Contrails, Touch'n Motion (1.0.5), Voxy, Atmospherics (2.6.8), Enchanted's Sodium Options
+  (1.4.1) and Iris' glint fix (1.11.7). When that mod is updated, the module switches itself off until it is checked against the
   new version and added to the list.
 - Modules that only read a mod's settings by name accept the same minor version: the Iris
   transparency restore (for example Iris 1.11.x) and Better Clouds (for example 1.15.x).
 - ImageIO isn't tied to a mod and is always on.
 
-| Minecraft | Iris | glint fix | Better Clouds | Voxy | Elytra Contrails | Touch'n Motion | Atmospherics |
-|---|---|---|---|---|---|---|---|
-| 26.3 | 1.11.x | 1.11.7 | 1.15.x | 0.2.20 | 1.6.10 | 1.0.5 | 2.6.8 |
-| 26.2 | 1.11.x | – | 1.14.x | 0.2.19 | 1.6.9 | 1.0.5 | – |
-| 26.1.2 | 1.11.x | – | 1.13.x | – | 1.5.1 | 1.0.5 | – |
-| 1.21.11 | 1.10.x | – | 1.13.x | – | 1.4.9 | 1.0.5 | – |
-| 1.21.1 | 1.8.x | – | 1.13.x | – | 1.4.7.5 | 1.0.5 | – |
+| Minecraft | Iris | glint fix | Better Clouds | Voxy | Elytra Contrails | Touch'n Motion | Atmospherics | Ench. Sodium Options |
+|---|---|---|---|---|---|---|---|---|
+| 26.3 | 1.11.x | 1.11.7 | 1.15.x | 0.2.20 | 1.6.10 | 1.0.5 | 2.6.8 | 1.4.1 |
+| 26.2 | 1.11.x | – | 1.14.x | 0.2.19 | 1.6.9 | 1.0.5 | – | – |
+| 26.1.2 | 1.11.x | – | 1.13.x | – | 1.5.1 | 1.0.5 | – | – |
+| 1.21.11 | 1.10.x | – | 1.13.x | – | 1.4.9 | 1.0.5 | – | – |
+| 1.21.1 | 1.8.x | – | 1.13.x | – | 1.4.7.5 | 1.0.5 | – | – |
+
+The hard-coded texts module is not version-checked: it only touches texts that match its list exactly.
 
 ## Iris module (needs Iris)
 
@@ -130,11 +132,38 @@ asked for that Voxy left out, plus a short list of known ones like `inIceCaves`,
 uses it and declares it nowhere, so a shader that already compiles is never changed. The log names
 the uniforms once ("Voxy shader fix: …").
 
+## Hard-coded texts module (26.3)
+
+Some mods write their texts straight into their code instead of a language file, so no resource pack can
+translate them and English players sometimes see raw option ids. This module makes them normal texts:
+when one of the listed classes loads and its mod is installed, each listed text the class uses is looked
+up under a `vanilla-finest-fixes.<mod>.<name>` key, with the mod's own text as the fallback. The English
+is in this mod's `en_us.json` (readable names where the mod showed ids); other languages come from
+resource packs (the Hungarian Translations pack has them).
+
+- **Screenshot Gallery 2.1:** the gallery, its menus, messages and settings screen.
+- **Better Advancements 0.6:** the settings screen (it showed ids like `defaultUncompletedIconColor`),
+  the tooltips and the criteria detail explanation.
+- **Head Tracker 0.5:** the compass letters N, E, S, W on the locator bar.
+- **Cloth Config:** "Value: %d" on sliders and the "Search..." field.
+
+The list is `platform/mc26.3/resources/vanilla-finest-fixes.texts.json`; `mixin.texts.HardcodedTextsMixin`
+lists the same classes. Texts not in the list are not touched, and when a mod update changes a text, that
+text simply stays in the mod's words. A text built from values ("Delete 3 screenshots?") is listed with
+`%s` and keeps its values in the translation (`%1$s` lets a translation leave out the English plural "s").
+
+## Enchanted's Sodium Options module (needs 1.4.1; 26.3)
+
+Enchanted's Sodium Options draws its option tooltips itself, in its own box beside the option list. This
+module shows the same text (the option and its value, the description, the performance impact) as a
+normal Minecraft tooltip, so it looks like every other tooltip and follows tooltip resource packs and
+mods. With the mouse the tooltip follows the pointer; with the keyboard it stays beside the focused option.
+
 ## Files
 
 | File | Minecraft | Modules |
 |---|---|---|
-| `vanilla-finest-fixes-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO |
+| `vanilla-finest-fixes-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO, hard-coded texts, Enchanted's Sodium Options |
 | `vanilla-finest-fixes-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO |
 | `vanilla-finest-fixes-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
 | `vanilla-finest-fixes-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
@@ -150,8 +179,14 @@ together with the old separate mods.
   reached by name at run time; the Iris and Voxy mixins are only applied when that mod is installed
   (`MixinPlugin` with `ModuleCheck`: mixins in `mixin.iris` need Iris, `mixin.voxy` Voxy,
   `mixin.elytratrails` Elytra Contrails, `mixin.touchnmotion` Touch'n Motion, `mixin.atmospherics`
-  Atmospherics, each in a listed version). Elytra Contrails is only needed at compile time
-  (`compileOnly`, from Modrinth's Maven); Touch'n Motion is targeted by class name.
+  Atmospherics, `mixin.eso` Enchanted's Sodium Options, each in a listed version). Elytra Contrails and
+  Enchanted's Sodium Options are only needed at compile time (`compileOnly`, from Modrinth's Maven);
+  Touch'n Motion is targeted by class name.
+- Hard-coded texts: `HardcodedTextsMixin` is empty and only applied to listed classes whose mod is
+  installed; `MixinPlugin.postApply` hands the class to `TextPatcher`, which puts a call to `Texts`
+  after each listed text constant (`Texts.tr`) and string concatenation (`Texts.concat`), and, where a
+  group says so, before `Component.literal` (`literal`) or after reading a static text array (`arrays`).
+  Priority 2000, so code other mods' mixins put into a class (Head Tracker in `LocatorBar`) is there.
 - Elytra Contrails: `TrailSkip` (src/) is shared by every version; the full mixin and the player
   model skip are in `modules/elytratrails-model/` (1.21.11 and 26.x), and 1.21.1 has a smaller
   mixin in `platform/mc1.21.1/`.

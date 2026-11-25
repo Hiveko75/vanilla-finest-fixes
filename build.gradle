@@ -33,6 +33,8 @@ dependencies {
     // Iris, Better Clouds and Voxy are not needed at compile time: they are reached by name at run time.
     // Elytra Contrails is needed to compile the Elytra Contrails module (elytratrails= line); not bundled.
     compileOnly(v.elytratrails)
+    // Enchanted's Sodium Options, for its tooltip module (eso= line, 26.3 only); not bundled.
+    if (v.getProperty('eso')) compileOnly(v.getProperty('eso'))
 }
 
 processResources {

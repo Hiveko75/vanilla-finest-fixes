@@ -5,7 +5,9 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "voxy.IrisShaderPatchMixin",
-    "voxy.IrisVoxyRenderPipelineDataMixin"
+    "voxy.IrisVoxyRenderPipelineDataMixin",
+    "eso.TooltipRenderHelperMixin",
+    "texts.HardcodedTextsMixin"
   ],
   "injectors": {
     "defaultRequire": 1

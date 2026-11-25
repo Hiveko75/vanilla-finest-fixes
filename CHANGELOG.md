@@ -23,6 +23,11 @@ when its mod has another version.
   longer crash the game with Improved Transparency on.
 - **ImageIO (all versions):** ImageIO's disk cache is off, so mods reading images through ImageIO no
   longer write a temp file per image.
+- **Hard-coded texts (26.3):** texts that Screenshot Gallery 2.1, Better Advancements 0.6 (its settings
+  screen), Head Tracker 0.5 (the compass letters) and Cloth Config ("Value:", "Search...") write into their
+  code become translatable through `vanilla-finest-fixes.*` keys, so resource packs can translate them;
+  Better Advancements' settings get readable English names instead of ids.
+- **Enchanted's Sodium Options 1.4.1 (26.3):** its option tooltips are drawn as normal Minecraft tooltips.
 - **Voxy (26.2, 26.3):** the game stays on Vulkan with Voxy installed and Voxy is switched off for that
   session. Shader packs' distant-terrain shaders compile again when the pack uses a value Iris does not
   provide on this Minecraft version (Complementary r5.10 in the End on 26.3: `inIceCaves`); such values

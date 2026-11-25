@@ -82,6 +82,10 @@ public class VanillaFinestFixes implements ClientModInitializer {
             LOGGER.info("Voxy module active");
         }
 
+        if (check("Enchanted's Sodium Options", "enchanteds_sodium_options")) {
+            LOGGER.info("Enchanted's Sodium Options module active (its tooltips are drawn as normal tooltips)");
+        }
+
     }
 
     /**
