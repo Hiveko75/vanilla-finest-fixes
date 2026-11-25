@@ -180,4 +180,13 @@ version's `CHANGELOG.md` section as notes. Locally (Java 25 and 21):
 ```
 
 Client-side only. Settings (only the Iris module keeps one) are in `config/vanilla-finest-fixes.properties`.
-License: All rights reserved.
+
+## Source and licence
+
+Vanilla Finest Fixes is made for the Vanilla Finest modpacks and ships inside them; it is not published
+on its own. The source is public so that players, modpack reviewers and the authors of the mods it works
+with can see exactly what it changes in their mods.
+
+It is **not open source**: all rights reserved, see [LICENSE](LICENSE). Please don't copy the code into
+other projects or include the mod in other modpacks without asking. Bug reports and questions are
+welcome as issues, for example when a fix gets in the way of a mod's own update.
