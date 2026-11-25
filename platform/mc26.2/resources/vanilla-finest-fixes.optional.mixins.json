@@ -5,7 +5,10 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "voxy.IrisShaderPatchMixin",
-    "voxy.IrisVoxyRenderPipelineDataMixin"
+    "voxy.IrisVoxyRenderPipelineDataMixin",
+    "headbrowser.HeadBrowserMixin",
+    "headbrowser.BrowseScreenMixin",
+    "headbrowser.HeadBrowserConfigMixin"
   ],
   "injectors": {
     "defaultRequire": 1

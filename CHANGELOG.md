@@ -28,6 +28,8 @@ when its mod has another version.
   format "Day {DAY_1}") write into their code or settings become translatable through `vanilla-finest-fixes.*` keys, so resource packs can translate them;
   Better Advancements' settings get readable English names instead of ids.
 - **Enchanted's Sodium Options 1.4.1 (26.3):** its option tooltips are drawn as normal Minecraft tooltips.
+- **Head Browser 2.6.x (26.2, 26.1.2, 1.21.11):** only in creative while in a world: taking heads (Head
+  Browser also allowed it in survival singleplayer), the browse key and the pause-screen button.
 - **Voxy (26.2, 26.3):** the game stays on Vulkan with Voxy installed and Voxy is switched off for that
   session. Shader packs' distant-terrain shaders compile again when the pack uses a value Iris does not
   provide on this Minecraft version (Complementary r5.10 in the End on 26.3: `inIceCaves`); such values

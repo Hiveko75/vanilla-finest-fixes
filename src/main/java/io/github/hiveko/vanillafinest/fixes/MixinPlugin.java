@@ -13,7 +13,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
  * Applies each module's mixins only when the mod it belongs to is installed in a version the module was
  * made for ({@link ModuleCheck}): mixin.iris.* needs Iris (GlintTexturesMixin: the Iris version with the
  * glint bug), mixin.voxy.* Voxy, mixin.elytratrails.* Elytra Contrails, mixin.touchnmotion.* Touch'n
- * Motion, mixin.atmospherics.* Atmospherics and mixin.eso.* Enchanted's Sodium Options. Otherwise they are
+ * Motion, mixin.atmospherics.* Atmospherics, mixin.eso.* Enchanted's Sodium Options and mixin.headbrowser.*
+ * Head Browser. Otherwise they are
  * skipped, so nothing fails at startup.
  *
  * <p>mixin.texts.HardcodedTextsMixin is empty: it only brings the classes listed in
@@ -46,6 +47,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".mixin.voxy.")) return "voxy";
         if (mixinClassName.contains(".mixin.atmospherics.")) return "atmospherics";
         if (mixinClassName.contains(".mixin.eso.")) return "enchanteds_sodium_options";
+        if (mixinClassName.contains(".mixin.headbrowser.")) return "headbrowser";
         return null;
     }
 

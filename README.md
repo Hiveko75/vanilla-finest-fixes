@@ -27,13 +27,13 @@ part of the mod's version (`1.6.10` for `1.6.10-26.3`):
   transparency restore (for example Iris 1.11.x) and Better Clouds (for example 1.15.x).
 - ImageIO isn't tied to a mod and is always on.
 
-| Minecraft | Iris | glint fix | Better Clouds | Voxy | Elytra Contrails | Touch'n Motion | Atmospherics | Ench. Sodium Options |
-|---|---|---|---|---|---|---|---|---|
-| 26.3 | 1.11.x | 1.11.7 | 1.15.x | 0.2.20 | 1.6.10 | 1.0.5 | 2.6.8 | 1.4.1 |
-| 26.2 | 1.11.x | – | 1.14.x | 0.2.19 | 1.6.9 | 1.0.5 | – | – |
-| 26.1.2 | 1.11.x | – | 1.13.x | – | 1.5.1 | 1.0.5 | – | – |
-| 1.21.11 | 1.10.x | – | 1.13.x | – | 1.4.9 | 1.0.5 | – | – |
-| 1.21.1 | 1.8.x | – | 1.13.x | – | 1.4.7.5 | 1.0.5 | – | – |
+| Minecraft | Iris | glint fix | Better Clouds | Voxy | Elytra Contrails | Touch'n Motion | Atmospherics | Ench. Sodium Options | Head Browser |
+|---|---|---|---|---|---|---|---|---|---|
+| 26.3 | 1.11.x | 1.11.7 | 1.15.x | 0.2.20 | 1.6.10 | 1.0.5 | 2.6.8 | 1.4.1 | – (own port) |
+| 26.2 | 1.11.x | – | 1.14.x | 0.2.19 | 1.6.9 | 1.0.5 | – | – | 2.6.4 |
+| 26.1.2 | 1.11.x | – | 1.13.x | – | 1.5.1 | 1.0.5 | – | – | 2.6.4 |
+| 1.21.11 | 1.10.x | – | 1.13.x | – | 1.4.9 | 1.0.5 | – | – | 2.6.1 |
+| 1.21.1 | 1.8.x | – | 1.13.x | – | 1.4.7.5 | 1.0.5 | – | – | – (own port) |
 
 The hard-coded texts module is not version-checked: it only touches texts that match its list exactly.
 
@@ -162,14 +162,23 @@ module shows the same text (the option and its value, the description, the perfo
 normal Minecraft tooltip, so it looks like every other tooltip and follows tooltip resource packs and
 mods. With the mouse the tooltip follows the pointer; with the keyboard it stays beside the focused option.
 
+## Head Browser module (needs Head Browser 2.6.x; 26.2, 26.1.2, 1.21.11)
+
+Head Browser lets a player take any head in a singleplayer world in every game mode (on servers only in
+creative), so in survival it is a free source of heads. With this module, in a world that is not in
+creative, heads can't be taken, the browse key does nothing and the pause screen has no Head Browser
+button (its "Pause button" option reads as off there; the setting is not changed). On the title screen the
+browser works as before. The 26.3 and 1.21.1 packs use the packs' own Head Browser ports, which do the
+same themselves.
+
 ## Files
 
 | File | Minecraft | Modules |
 |---|---|---|
 | `vanilla-finest-fixes-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO, hard-coded texts, Enchanted's Sodium Options |
-| `vanilla-finest-fixes-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO |
-| `vanilla-finest-fixes-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
-| `vanilla-finest-fixes-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO |
+| `vanilla-finest-fixes-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser |
+| `vanilla-finest-fixes-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser |
+| `vanilla-finest-fixes-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser |
 | `vanilla-finest-fixes-*+mc1.21.1.jar` | 1.21, 1.21.1 | Iris, Better Clouds, Elytra Contrails (player trails), Touch'n Motion, ImageIO |
 
 The mod declares that it provides `better-clouds-toggle`, `iris-glint-fix`,
@@ -182,7 +191,8 @@ together with the old separate mods.
   reached by name at run time; the Iris and Voxy mixins are only applied when that mod is installed
   (`MixinPlugin` with `ModuleCheck`: mixins in `mixin.iris` need Iris, `mixin.voxy` Voxy,
   `mixin.elytratrails` Elytra Contrails, `mixin.touchnmotion` Touch'n Motion, `mixin.atmospherics`
-  Atmospherics, `mixin.eso` Enchanted's Sodium Options, each in a listed version). Elytra Contrails and
+  Atmospherics, `mixin.eso` Enchanted's Sodium Options, `mixin.headbrowser` Head Browser (targeted by
+  class name), each in a listed version). Elytra Contrails and
   Enchanted's Sodium Options are only needed at compile time (`compileOnly`, from Modrinth's Maven);
   Touch'n Motion is targeted by class name.
 - Hard-coded texts: `HardcodedTextsMixin` is empty and only applied to listed classes whose mod is
