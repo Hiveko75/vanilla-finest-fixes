@@ -146,6 +146,7 @@ resource packs (the Hungarian Translations pack has them).
   the tooltips and the criteria detail explanation.
 - **Head Tracker 0.5:** the compass letters N, E, S, W on the locator bar.
 - **Cloth Config:** "Value: %d" on sliders and the "Search..." field.
+- **macOS Input Fixes 1.16:** its eight options on the Mouse Settings screen (names, tooltips, ON/OFF).
 - **MiniHUD 0.41:** the world time line when `dateFormatMinecraft` is the packs' "Day {DAY_1}" (or
   MiniHUD's own default), so each language can write the day its own way ("{DAY_1}. nap"). A format the
   player typed in stays as it is.

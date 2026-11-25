@@ -152,6 +152,41 @@
         "MC time: (day {DAY}) {HOUR}:{MIN}:xx": "date_format_default"
       }
     },
+    "macos_input_fixes": {
+      "mod": "macos_input_fixes",
+      "classes": [
+        "com.hamarb123.macos_input_fixes.client.ModOptions"
+      ],
+      "texts": {
+        "Trackpad Sensitivity": "trackpad_sensitivity",
+        "The grouping feature only affects hotbar scrolling.\nThis feature only affects scrolling from the trackpad (and other high precision devices).\nDefault: 20.0\n0.0: Disable custom trackpad scroll processing.\nOther: group scrolls together to make scrolling speed much more reasonable on hotbar, scroll amount is divided by the value chosen here.": "trackpad_sensitivity.tip",
+        "Momentum Scrolling": "momentum_scrolling",
+        "Only affects hotbar scrolling.\nA momentum scroll is when macOS keeps scrolling after you release the wheel.\nDefault: OFF\nOFF: ignore 'momentum scroll' events.\nON: process 'momentum scroll' events.": "momentum_scrolling.tip",
+        "Interface Smooth Scroll": "smooth_scroll",
+        "Affects all scrolling from legacy input devices (except for the hotbar).\nmacOS sometimes adjusts how much a single scroll does to make it feel 'smoother', but this can cause scroll amounts to feel random sometimes.\nDefault: OFF\nOFF: Modify smooth scrolling events to all be the same scroll amount.\nON: Keep smooth scrolling events as-is.": "smooth_scroll.tip",
+        "Disable Ctrl+Click Fix": "disable_ctrl_click_fix",
+        "When enabled, disables the fix for the bug which causes Minecraft\nto map Control + Left Click to Right Click.\nDefault: OFF": "disable_ctrl_click_fix.tip",
+        "Use P3 Color Space": "use_p3_color_space",
+        "When enabled, uses the P3 color space for rendering instead of sRGB.\nThis reverts the fix made in Minecraft 26.2+\nwith the new Vulkan renderer, that causes colors to be less vibrant.\nRequires game restart to take effect.\nDefault: OFF": "use_p3_color_space.tip",
+        "Reverse Hotbar Scroll": "reverse_hotbar_scrolling",
+        "Reverses the direction that scrolling goes for the hotbar when enabled.\nDefault: OFF": "reverse_hotbar_scrolling.tip",
+        "Lock Scroll While Attacking/Using": "lock_scroll_while_attacking",
+        "Ignores scrolling while the attack key is held down and you are in game (no screen open).\nUseful on a Magic Mouse or trackpad, where a small finger movement while mining\ncauses an accidental scroll that switches the selected hotbar item.\nDefault: OFF\nOFF: scrolling always works.\nON: scrolling is ignored while the attack key is held down.": "lock_scroll_while_attacking.tip",
+        "Reverse Scrolling": "reverse_scrolling",
+        "Reverses the direction of all scrolling when enabled.\nDefault: OFF": "reverse_scrolling.tip"
+      }
+    },
+    "macos_input_fixes-values": {
+      "mod": "macos_input_fixes",
+      "classes": [
+        "com.hamarb123.macos_input_fixes.client.ModOptions"
+      ],
+      "methods": "lambda$booleanOption119Impl",
+      "texts": {
+        "ON": "on",
+        "OFF": "off"
+      }
+    },
     "cloth-config": {
       "mod": "cloth-config",
       "classes": [

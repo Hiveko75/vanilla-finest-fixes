@@ -21,6 +21,8 @@ import org.spongepowered.asm.mixin.Mixin;
         "net.minecraft.client.gui.contextualbar.LocatorBar",
         // MiniHUD 0.41 (the pack's date format setting, "Day {DAY_1}")
         "fi.dy.masa.minihud.info.world.InfoLineTimeWorldFormatted",
+        // macOS Input Fixes 1.16 (its options on the Mouse Settings screen, shown on every system)
+        "com.hamarb123.macos_input_fixes.client.ModOptions",
         // Cloth Config 26.3 ("Value: %d" on sliders, the search field)
         "me.shedaniel.clothconfig2.gui.entries.IntegerSliderEntry",
         "me.shedaniel.clothconfig2.gui.entries.LongSliderEntry",
