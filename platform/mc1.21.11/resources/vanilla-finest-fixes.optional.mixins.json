@@ -6,7 +6,9 @@
   "client": [
     "headbrowser.HeadBrowserMixin",
     "headbrowser.BrowseScreenMixin",
-    "headbrowser.HeadBrowserConfigMixin"
+    "headbrowser.HeadBrowserConfigMixin",
+    "weather.OptionsWeatherRadiusMixin",
+    "weather.SodiumWeatherRangeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

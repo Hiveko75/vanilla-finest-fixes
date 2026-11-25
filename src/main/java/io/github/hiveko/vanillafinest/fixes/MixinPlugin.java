@@ -48,6 +48,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".mixin.atmospherics.")) return "atmospherics";
         if (mixinClassName.contains(".mixin.eso.")) return "enchanteds_sodium_options";
         if (mixinClassName.contains(".mixin.headbrowser.")) return "headbrowser";
+        if (mixinClassName.endsWith(".mixin.weather.SodiumWeatherRangeMixin")) return "sodium.weather";
         return null;
     }
 

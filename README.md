@@ -172,6 +172,14 @@ button (its "Pause button" option reads as off there; the setting is not changed
 browser works as before. The 26.3 and 1.21.1 packs use the packs' own Head Browser ports, which do the
 same themselves.
 
+## Weather module (26.3, 26.2, 26.1.2, 1.21.11)
+
+Weather Effect Radius (Video Settings, also on Sodium's page) goes up to **15** instead of Minecraft's 10.
+Minecraft's weather renderer keeps its column sizes in a 32 × 32 table around the player, which covers a
+radius of 15 without any other change; options.txt accepts values up to 15. Sodium 0.9.3+ (26.3) takes its
+slider range from Minecraft's option; Sodium 0.9.1 (26.2, 26.1.2) and 0.8.12 (1.21.11) have their own
+range, which is raised too (only those versions, `sodium.weather`). 1.21.1 has no such option.
+
 ## Files
 
 | File | Minecraft | Modules |
