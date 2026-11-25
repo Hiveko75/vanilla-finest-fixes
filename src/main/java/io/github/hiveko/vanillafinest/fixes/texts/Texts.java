@@ -36,7 +36,7 @@ public final class Texts {
         return format(template, values);
     }
 
-    /** A text given to Component.literal in a "literal" group: its translation if it is listed. */
+    /** A text made at run time ("literal" and "calls" groups): its translation if it is listed. */
     public static String literal(String text, String group) {
         if (text == null) return null;
         String key = TextPatcher.dynamicKey(group, text);

@@ -114,5 +114,7 @@
   "vanilla-finest-fixes.headtracker.south": "S",
   "vanilla-finest-fixes.headtracker.west": "W",
   "vanilla-finest-fixes.cloth-config.value": "Value: %d",
-  "vanilla-finest-fixes.cloth-config.search": "Search..."
+  "vanilla-finest-fixes.cloth-config.search": "Search...",
+  "vanilla-finest-fixes.minihud.date_format": "Day {DAY_1}",
+  "vanilla-finest-fixes.minihud.date_format_default": "MC time: (day {DAY}) {HOUR}:{MIN}:xx"
 }

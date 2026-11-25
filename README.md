@@ -146,6 +146,9 @@ resource packs (the Hungarian Translations pack has them).
   the tooltips and the criteria detail explanation.
 - **Head Tracker 0.5:** the compass letters N, E, S, W on the locator bar.
 - **Cloth Config:** "Value: %d" on sliders and the "Search..." field.
+- **MiniHUD 0.41:** the world time line when `dateFormatMinecraft` is the packs' "Day {DAY_1}" (or
+  MiniHUD's own default), so each language can write the day its own way ("{DAY_1}. nap"). A format the
+  player typed in stays as it is.
 
 The list is `platform/mc26.3/resources/vanilla-finest-fixes.texts.json`; `mixin.texts.HardcodedTextsMixin`
 lists the same classes. Texts not in the list are not touched, and when a mod update changes a text, that
@@ -185,7 +188,8 @@ together with the old separate mods.
 - Hard-coded texts: `HardcodedTextsMixin` is empty and only applied to listed classes whose mod is
   installed; `MixinPlugin.postApply` hands the class to `TextPatcher`, which puts a call to `Texts`
   after each listed text constant (`Texts.tr`) and string concatenation (`Texts.concat`), and, where a
-  group says so, before `Component.literal` (`literal`) or after reading a static text array (`arrays`).
+  group says so, before `Component.literal` (`literal`), after reading a static text array (`arrays`) or
+  after listed methods that return a text (`calls`, MiniHUD's `ConfigString.getStringValue`).
   Priority 2000, so code other mods' mixins put into a class (Head Tracker in `LocatorBar`) is there.
 - Elytra Contrails: `TrailSkip` (src/) is shared by every version; the full mixin and the player
   model skip are in `modules/elytratrails-model/` (1.21.11 and 26.x), and 1.21.1 has a smaller

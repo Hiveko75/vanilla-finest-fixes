@@ -1,5 +1,5 @@
 {
-  "_comment": "Hard-coded texts of other mods made translatable (TextPatcher). When one of the classes loads and the group's mod is installed, each text below that the class uses (as a constant, or built with values: %s) is replaced by the translation of 'vanilla-finest-fixes.<group>.<name>', falling back to the mod's own text. 'methods': only methods whose name contains this (for code another mod's mixin put into a Minecraft class). 'literal': also texts made at run time that go into Component.literal. 'arrays': also the texts in text arrays read from static fields (filled before the languages load). The English is in assets/vanilla-finest-fixes/lang/en_us.json; the classes are also listed in mixin.texts.HardcodedTextsMixin.",
+  "_comment": "Hard-coded texts of other mods made translatable (TextPatcher). When one of the classes loads and the group's mod is installed, each text below that the class uses (as a constant, or built with values: %s) is replaced by the translation of 'vanilla-finest-fixes.<group>.<name>', falling back to the mod's own text. 'methods': only methods whose name contains this (for code another mod's mixin put into a Minecraft class). 'literal': also texts made at run time that go into Component.literal. 'arrays': also the texts in text arrays read from static fields (filled before the languages load). 'calls': also the text results of these methods (owner/Class.name), for a setting the pack fills with a text. The English is in assets/vanilla-finest-fixes/lang/en_us.json; the classes are also listed in mixin.texts.HardcodedTextsMixin.",
   "groups": {
     "screenshotgallery": {
       "mod": "screenshotgallery",
@@ -137,6 +137,19 @@
         "E": "east",
         "S": "south",
         "W": "west"
+      }
+    },
+    "minihud": {
+      "mod": "minihud",
+      "classes": [
+        "fi.dy.masa.minihud.info.world.InfoLineTimeWorldFormatted"
+      ],
+      "calls": [
+        "fi/dy/masa/malilib/config/options/ConfigString.getStringValue"
+      ],
+      "texts": {
+        "Day {DAY_1}": "date_format",
+        "MC time: (day {DAY}) {HOUR}:{MIN}:xx": "date_format_default"
       }
     },
     "cloth-config": {

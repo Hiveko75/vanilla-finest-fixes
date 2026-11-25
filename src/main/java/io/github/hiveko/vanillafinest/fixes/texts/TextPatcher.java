@@ -21,9 +21,11 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Hard-coded texts module: makes texts that other mods write straight into their code translatable, so a
@@ -43,6 +45,8 @@ import java.util.Map;
  *   <li>with {@code "arrays": true}, every text array the methods read from a static field is looked up
  *       too ({@link Texts#array}), for texts a mod keeps in an array it fills before the languages load
  *       (Head Tracker's compass letters);</li>
+ *   <li>{@code "calls"} lists methods ({@code owner/Class.name}) whose text result is looked up too
+ *       ({@link Texts#literal}), for a setting the pack fills with a text (MiniHUD's date format);</li>
  *   <li>{@code "methods"} limits a group to methods whose name contains that word, for code another mod's
  *       mixin put into a Minecraft class (Head Tracker's compass in LocatorBar).</li>
  * </ul>
@@ -58,7 +62,8 @@ public final class TextPatcher {
     private static final String COMPONENT = "net/minecraft/network/chat/Component";
 
     /** One group of {@value #FILE}. {@code texts}: the mod's text → full translation key. */
-    record Group(String id, String mod, String methods, boolean literal, boolean arrays, Map<String, String> texts) {}
+    record Group(String id, String mod, String methods, boolean literal, boolean arrays, Set<String> calls,
+                 Map<String, String> texts) {}
 
     private static Map<String, List<Group>> byClass;
     private static Map<String, Group> byId;
@@ -81,7 +86,7 @@ public final class TextPatcher {
                 }
                 Group g = new Group(e.getKey(), o.get("mod").getAsString(),
                         o.has("methods") ? o.get("methods").getAsString() : null,
-                        flag(o, "literal"), flag(o, "arrays"), texts);
+                        flag(o, "literal"), flag(o, "arrays"), strings(o, "calls"), texts);
                 byId.put(g.id(), g);
                 for (JsonElement c : o.getAsJsonArray("classes")) {
                     byClass.computeIfAbsent(c.getAsString(), k -> new ArrayList<>()).add(g);
@@ -94,6 +99,12 @@ public final class TextPatcher {
 
     private static boolean flag(JsonObject o, String name) {
         return o.has(name) && o.get(name).getAsBoolean();
+    }
+
+    private static Set<String> strings(JsonObject o, String name) {
+        Set<String> out = new HashSet<>();
+        if (o.has(name)) for (JsonElement e : o.getAsJsonArray(name)) out.add(e.getAsString());
+        return out;
     }
 
     /** The groups for this class whose mod is installed. */
@@ -163,6 +174,13 @@ public final class TextPatcher {
                         add.add(new LdcInsnNode(g.id()));
                         add.add(new MethodInsnNode(Opcodes.INVOKESTATIC, TEXTS, "literal", "(" + STRING + STRING + ")" + STRING, false));
                         m.instructions.insertBefore(call, add);
+                        count++;
+                    } else if (!g.calls().isEmpty() && insn instanceof MethodInsnNode call
+                            && call.desc.endsWith(")" + STRING) && g.calls().contains(call.owner + "." + call.name)) {
+                        InsnList add = new InsnList();
+                        add.add(new LdcInsnNode(g.id()));
+                        add.add(new MethodInsnNode(Opcodes.INVOKESTATIC, TEXTS, "literal", "(" + STRING + STRING + ")" + STRING, false));
+                        m.instructions.insert(call, add);
                         count++;
                     } else if (g.arrays() && insn instanceof FieldInsnNode field && field.getOpcode() == Opcodes.GETSTATIC
                             && field.desc.equals("[" + STRING)) {

@@ -19,6 +19,8 @@ import org.spongepowered.asm.mixin.Mixin;
         "betteradvancements.fabric.config.ConfigValues",
         // Head Tracker 0.5 (compass letters on the locator bar)
         "net.minecraft.client.gui.contextualbar.LocatorBar",
+        // MiniHUD 0.41 (the pack's date format setting, "Day {DAY_1}")
+        "fi.dy.masa.minihud.info.world.InfoLineTimeWorldFormatted",
         // Cloth Config 26.3 ("Value: %d" on sliders, the search field)
         "me.shedaniel.clothconfig2.gui.entries.IntegerSliderEntry",
         "me.shedaniel.clothconfig2.gui.entries.LongSliderEntry",
