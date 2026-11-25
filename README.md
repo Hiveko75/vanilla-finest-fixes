@@ -172,6 +172,11 @@ button (its "Pause button" option reads as off there; the setting is not changed
 browser works as before. The 26.3 and 1.21.1 packs use the packs' own Head Browser ports, which do the
 same themselves.
 
+## Immersive Storms module (needs Immersive Storms 1.8.0; 26.3)
+
+Sandstorm grains are much smaller: Immersive Storms spawns them at dust size 10, which Minecraft caps at 4
+(the largest dust); the module makes them 1.5 (redstone dust is 1). Ambient wind particles are unchanged.
+
 ## Weather module (26.3, 26.2, 26.1.2, 1.21.11)
 
 Weather Effect Radius (Video Settings, also on Sodium's page) goes up to **15** instead of Minecraft's 10.

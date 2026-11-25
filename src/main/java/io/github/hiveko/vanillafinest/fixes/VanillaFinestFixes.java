@@ -82,6 +82,10 @@ public class VanillaFinestFixes implements ClientModInitializer {
             LOGGER.info("Voxy module active");
         }
 
+        if (check("Immersive Storms", "immersive-storms")) {
+            LOGGER.info("Immersive Storms module active (smaller sandstorm grains)");
+        }
+
         if (check("Head Browser", "headbrowser")) {
             LOGGER.info("Head Browser module active (heads, the browse key and the pause-screen button only in creative)");
         }
