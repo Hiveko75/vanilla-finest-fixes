@@ -15,11 +15,8 @@ import java.util.Optional;
  * Selects a Better Clouds shader preset made for Mellow whenever the active Iris shader pack's
  * file name starts with "Mellow" (any version or fork), and switches back when it doesn't.
  *
- * Mellow renders in linear colour and tonemaps at the end, while Better Clouds writes display
- * (gamma-encoded) colour, so under Mellow its clouds come out too bright and flat. A Better Clouds
- * preset with Gamma -2.2 linearises them first, the same as its built-in presets for other
- * linear-light packs; lower brightness with more saturation keeps Mellow's tonemap from
- * bleaching them white. The preset ("Mellow (auto)") is created once as a copy of the Default
+ * Under Mellow, Better Clouds' default colours come out wrong, so Mellow gets a preset of its own
+ * (values below: Hiveko's, set in game for Better Clouds 1.15.1, the same as the packs' preset). The preset ("Mellow (auto)") is created once as a copy of the Default
  * preset and can be tuned in Better Clouds' own settings afterwards; it is never overwritten.
  *
  * Like the toggle key, nothing is compiled against Better Clouds or Iris: both are reached by name
@@ -30,11 +27,11 @@ final class MellowPreset {
     static final String KEY = "mellow_auto";
     private static final String TITLE = "Mellow (auto)";
     private static final String PACK_PREFIX = "mellow";
-    // Tuned in game under Mellow 3.5 at sunset (Better Clouds 1.15, Voxy 0.2.20).
-    private static final float GAMMA = -2.2f;
-    private static final float DAY_BRIGHTNESS = 0.5f;
+    // Hiveko's values for Better Clouds 1.15.1 under Mellow 3.5 (26 Nov); the same as the packs' preset.
+    private static final float GAMMA = 0.05f;
+    private static final float DAY_BRIGHTNESS = 1.0f;
     private static final float SATURATION = 2.0f;
-    private static final float OPACITY_FACTOR = 1.0f;   // full opacity: with Better Clouds 1.15.1, 50% made Mellow's clouds too thin
+    private static final float OPACITY_FACTOR = 0.5f;
     private static final int CHECK_INTERVAL_TICKS = 10;
 
     private static final Logger LOGGER = LoggerFactory.getLogger("Vanilla Finest Fixes");
