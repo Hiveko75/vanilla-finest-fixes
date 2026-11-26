@@ -16,7 +16,8 @@ when its mod has another version.
 - **Better Clouds (all versions):** toggle key (F9 in the packs), the "Mellow (auto)" preset is chosen
   automatically while a Mellow shader pack is on, and clouds are hidden behind Voxy's distant terrain
   (26.2: Better Clouds 1.14 compared its clouds with Voxy's depth on the wrong scale while a shader pack
-  was on, so they showed through distant mountains).
+  was on). 26.2: Better Clouds 1.14 no longer adds another "Default" preset on every start, and the
+  selected preset (such as "Mellow (auto)") stays selected when it re-sorts its presets.
 - **Elytra Contrails (all versions):** trails are only sampled for players and entities that have them
   switched on, and only players are looped over.
 - **Touch'n Motion 1.0.5 (all versions):** a seated player's head follows where the player faces, with

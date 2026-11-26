@@ -12,7 +12,8 @@
     "weather.OptionsWeatherRadiusMixin",
     "weather.SodiumWeatherRangeMixin",
     "gnetum.GnetumSodiumPageMixin",
-    "betterclouds.VoxyCloudDepthRangeMixin"
+    "betterclouds.VoxyCloudDepthRangeMixin",
+    "betterclouds.PresetListMixin"
   ],
   "injectors": {
     "defaultRequire": 1

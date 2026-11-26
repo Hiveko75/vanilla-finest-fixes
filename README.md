@@ -60,6 +60,10 @@ The hard-coded texts module is not version-checked: it only touches texts that m
   so an existing binding is kept.
 - **Mellow cloud preset:** with a Mellow shader pack active, a Better Clouds preset made for Mellow
   ("Mellow (auto)") is selected, and the previous one comes back afterwards.
+- **Preset list (26.2, Better Clouds 1.14):** Better Clouds 1.14 added another "Default" preset on every
+  start and lost the selected preset when it re-sorted the list (so "Mellow (auto)" turned back into a
+  "Default"). Duplicates are removed by key, as Better Clouds 1.15 does, and the selected preset stays
+  selected; existing duplicates disappear on the next start.
 - **Voxy cloud depth:** turns on Better Clouds' built-in Voxy support, so with shaders clouds are
   hidden behind distant Voxy terrain. On 26.2 (Better Clouds 1.14) that support is already on but
   compared its cloud depth with Voxy's on the wrong scale while a shader pack is on (Iris 1.11.2 makes
