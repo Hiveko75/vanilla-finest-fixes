@@ -30,6 +30,8 @@ import org.slf4j.LoggerFactory;
  *       reading textures through ImageIO no longer create a temp file per image on the render thread.</li>
  *   <li><b>Voxy</b> (voxy/, 26.2 and 26.3): lets the game stay on Vulkan with Voxy installed and
  *       switches Voxy off for that session. Mixins only.</li>
+ *   <li><b>Gnetum</b> (gnetum/, all versions): Gnetum's page in Video Settings follows the current
+ *       language (element names, tooltips, page names, passes). Mixin only.</li>
  * </ul>
  */
 public class VanillaFinestFixes implements ClientModInitializer {
@@ -92,6 +94,10 @@ public class VanillaFinestFixes implements ClientModInitializer {
 
         if (check("Enchanted's Sodium Options", "enchanteds_sodium_options")) {
             LOGGER.info("Enchanted's Sodium Options module active (its tooltips are drawn as normal tooltips)");
+        }
+
+        if (check("Gnetum", "gnetum")) {
+            LOGGER.info("Gnetum module active (its page in Video Settings follows the current language)");
         }
 
     }

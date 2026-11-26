@@ -9,7 +9,8 @@
     "eso.TooltipRenderHelperMixin",
     "texts.HardcodedTextsMixin",
     "weather.OptionsWeatherRadiusMixin",
-    "immersivestorms.SandstormParticlesMixin"
+    "immersivestorms.SandstormParticlesMixin",
+    "gnetum.GnetumSodiumPageMixin"
   ],
   "injectors": {
     "defaultRequire": 1

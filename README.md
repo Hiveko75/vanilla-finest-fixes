@@ -21,19 +21,19 @@ part of the mod's version (`1.6.10` for `1.6.10-26.3`):
 
 - Modules that change a mod's code or work around a bug of one version need that exact version:
   Elytra Contrails, Touch'n Motion (1.0.5), Voxy, Atmospherics (2.6.8), Enchanted's Sodium Options
-  (1.4.1) and Iris' glint fix (1.11.7). When that mod is updated, the module switches itself off until it is checked against the
+  (1.4.1), Gnetum (4.6.5) and Iris' glint fix (1.11.7). When that mod is updated, the module switches itself off until it is checked against the
   new version and added to the list.
 - Modules that only read a mod's settings by name accept the same minor version: the Iris
   transparency restore (for example Iris 1.11.x) and Better Clouds (for example 1.15.x).
 - ImageIO isn't tied to a mod and is always on.
 
-| Minecraft | Iris | glint fix | Better Clouds | Voxy | Elytra Contrails | Touch'n Motion | Atmospherics | Ench. Sodium Options | Head Browser |
-|---|---|---|---|---|---|---|---|---|---|
-| 26.3 | 1.11.x | 1.11.7 | 1.15.x | 0.2.20 | 1.6.10 | 1.0.5 | 2.6.8 | 1.4.1 | – (own port) |
-| 26.2 | 1.11.x | – | 1.14.x | 0.2.19 | 1.6.9 | 1.0.5 | – | – | 2.6.4 |
-| 26.1.2 | 1.11.x | – | 1.13.x | – | 1.5.1 | 1.0.5 | – | – | 2.6.4 |
-| 1.21.11 | 1.10.x | – | 1.13.x | – | 1.4.9 | 1.0.5 | – | – | 2.6.1 |
-| 1.21.1 | 1.8.x | – | 1.13.x | – | 1.4.7.5 | 1.0.5 | – | – | – (own port) |
+| Minecraft | Iris | glint fix | Better Clouds | Voxy | Elytra Contrails | Touch'n Motion | Atmospherics | Ench. Sodium Options | Head Browser | Gnetum |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 26.3 | 1.11.x | 1.11.7 | 1.15.x | 0.2.20 | 1.6.10 | 1.0.5 | 2.6.8 | 1.4.1 | – (own port) | 4.6.5 |
+| 26.2 | 1.11.x | – | 1.14.x | 0.2.19 | 1.6.9 | 1.0.5 | – | – | 2.6.4 | 4.6.5 |
+| 26.1.2 | 1.11.x | – | 1.13.x | – | 1.5.1 | 1.0.5 | – | – | 2.6.4 | 4.6.5 |
+| 1.21.11 | 1.10.x | – | 1.13.x | – | 1.4.9 | 1.0.5 | – | – | 2.6.1 | 4.6.5 |
+| 1.21.1 | 1.8.x | – | 1.13.x | – | 1.4.7.5 | 1.0.5 | – | – | – (own port) | 4.6.5 |
 
 The hard-coded texts module is not version-checked: it only touches texts that match its list exactly.
 
@@ -177,6 +177,23 @@ same themselves.
 Sandstorm grains are much smaller: Immersive Storms spawns them at dust size 10, which Minecraft caps at 4
 (the largest dust); the module makes them 1.5 (redstone dust is 1). Ambient wind particles are unchanged.
 
+## Gnetum module (needs Gnetum 4.6.5; all versions)
+
+Gnetum's page in Sodium's Video Settings (*Gnetum*: General, Elements) follows the current language. Gnetum
+builds the page once, when the game has loaded, and turns its HUD element names and their tooltips into
+plain text at that moment, so a language picked later (the setup screen adds the computer's language on a
+first start) or a resource pack added later only reached them after a restart. Now:
+
+- the element names use Gnetum's own keys (`gnetum.config.element.<id>`, ":" written as "."), looked up each
+  time they are drawn, with Gnetum's English name made from the id as the fallback;
+- their tooltips use `gnetum.config.element.<id>.tooltip` the same way, also when a tooltip only exists in
+  the current language;
+- the page names "General" and "Elements" and the "3 passes" value of *Number of Passes*, which are
+  English in Gnetum's code, are `vanilla-finest-fixes.gnetum.page.general`, `.page.elements` and
+  `.passes` ("%s passes"), so resource packs can translate them.
+
+The Hungarian Translations pack has all of them.
+
 ## Weather module (26.3, 26.2, 26.1.2, 1.21.11)
 
 Weather Effect Radius (Video Settings, also on Sodium's page) goes up to **15** instead of Minecraft's 10.
@@ -189,11 +206,11 @@ range, which is raised too (only those versions, `sodium.weather`). 1.21.1 has n
 
 | File | Minecraft | Modules |
 |---|---|---|
-| `vanilla-finest-fixes-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO, hard-coded texts, Enchanted's Sodium Options |
-| `vanilla-finest-fixes-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser |
-| `vanilla-finest-fixes-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser |
-| `vanilla-finest-fixes-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser |
-| `vanilla-finest-fixes-*+mc1.21.1.jar` | 1.21, 1.21.1 | Iris, Better Clouds, Elytra Contrails (player trails), Touch'n Motion, ImageIO |
+| `vanilla-finest-fixes-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO, hard-coded texts, Enchanted's Sodium Options, Immersive Storms, Weather, Gnetum |
+| `vanilla-finest-fixes-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser, Weather, Gnetum |
+| `vanilla-finest-fixes-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser, Weather, Gnetum |
+| `vanilla-finest-fixes-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser, Weather, Gnetum |
+| `vanilla-finest-fixes-*+mc1.21.1.jar` | 1.21, 1.21.1 | Iris, Better Clouds, Elytra Contrails (player trails), Touch'n Motion, ImageIO, Gnetum |
 
 The mod declares that it provides `better-clouds-toggle`, `iris-glint-fix`,
 `voxy-disabler-on-vulkan` and `particle-transparency-fix` (as far as that version contains them), so Fabric refuses to load it
@@ -205,8 +222,8 @@ together with the old separate mods.
   reached by name at run time; the Iris and Voxy mixins are only applied when that mod is installed
   (`MixinPlugin` with `ModuleCheck`: mixins in `mixin.iris` need Iris, `mixin.voxy` Voxy,
   `mixin.elytratrails` Elytra Contrails, `mixin.touchnmotion` Touch'n Motion, `mixin.atmospherics`
-  Atmospherics, `mixin.eso` Enchanted's Sodium Options, `mixin.headbrowser` Head Browser (targeted by
-  class name), each in a listed version). Elytra Contrails and
+  Atmospherics, `mixin.eso` Enchanted's Sodium Options, `mixin.headbrowser` Head Browser and
+  `mixin.gnetum` Gnetum (both targeted by class name), each in a listed version). Elytra Contrails and
   Enchanted's Sodium Options are only needed at compile time (`compileOnly`, from Modrinth's Maven);
   Touch'n Motion is targeted by class name.
 - Hard-coded texts: `HardcodedTextsMixin` is empty and only applied to listed classes whose mod is
@@ -226,6 +243,11 @@ together with the old separate mods.
   layer further out (priority 2000), creates the Vulkan device after Voxy's refusal and skips
   `VoxyClient.initVoxyClient()` on Vulkan. Real Vulkan failures are passed on, so Minecraft's normal
   fallback still works.
+- Gnetum: `GnetumSodiumPageMixin` (optional configuration) changes `SodiumEntrypoint`: the two
+  `OptionPageBuilder.setName` calls and the "passes" formatter lambda get translatable texts, the element's
+  `EnumOptionBuilder.setName` gets `GnetumTexts.name(id)` (the map entry's key, via MixinExtras `@Local`),
+  and the tooltip lambda's name, "has tooltip" flag and tooltip text are replaced at its start. No target
+  names a Minecraft class, so the same mixin works on 1.21.x, where Loom remaps in place.
 - Voxy shader uniforms: `IrisShaderPatch.getUniformList()` is captured when Voxy builds the uniform
   block; `IrisVoxyRenderPipelineData.opaqueFragPatch()` / `translucentFragPatch()` get the missing
   declarations in front (`MissingUniforms`). Both mixins are in the non-required configuration

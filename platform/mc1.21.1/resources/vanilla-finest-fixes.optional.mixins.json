@@ -3,7 +3,9 @@
   "package": "io.github.hiveko.vanillafinest.fixes.mixin",
   "plugin": "io.github.hiveko.vanillafinest.fixes.MixinPlugin",
   "compatibilityLevel": "JAVA_21",
-  "client": [],
+  "client": [
+    "gnetum.GnetumSodiumPageMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

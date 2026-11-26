@@ -134,5 +134,8 @@
   "vanilla-finest-fixes.macos_input_fixes.reverse_scrolling": "Reverse Scrolling",
   "vanilla-finest-fixes.macos_input_fixes.reverse_scrolling.tip": "Reverses the direction of all scrolling when enabled.\nDefault: OFF",
   "vanilla-finest-fixes.macos_input_fixes-values.on": "ON",
-  "vanilla-finest-fixes.macos_input_fixes-values.off": "OFF"
+  "vanilla-finest-fixes.macos_input_fixes-values.off": "OFF",
+  "vanilla-finest-fixes.gnetum.page.general": "General",
+  "vanilla-finest-fixes.gnetum.page.elements": "Elements",
+  "vanilla-finest-fixes.gnetum.passes": "%s passes"
 }
