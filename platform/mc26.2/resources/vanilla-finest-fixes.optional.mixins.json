@@ -11,7 +11,8 @@
     "headbrowser.HeadBrowserConfigMixin",
     "weather.OptionsWeatherRadiusMixin",
     "weather.SodiumWeatherRangeMixin",
-    "gnetum.GnetumSodiumPageMixin"
+    "gnetum.GnetumSodiumPageMixin",
+    "betterclouds.VoxyCloudDepthRangeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

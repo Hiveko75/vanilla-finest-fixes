@@ -14,7 +14,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
  * made for ({@link ModuleCheck}): mixin.iris.* needs Iris (GlintTexturesMixin: the Iris version with the
  * glint bug), mixin.voxy.* Voxy, mixin.elytratrails.* Elytra Contrails, mixin.touchnmotion.* Touch'n
  * Motion, mixin.atmospherics.* Atmospherics, mixin.eso.* Enchanted's Sodium Options, mixin.headbrowser.*
- * Head Browser and mixin.gnetum.* Gnetum. Otherwise they are
+ * Head Browser, mixin.gnetum.* Gnetum and mixin.betterclouds.* Better Clouds (26.2: Better Clouds 1.14). Otherwise
+ * they are
  * skipped, so nothing fails at startup.
  *
  * <p>mixin.texts.HardcodedTextsMixin is empty: it only brings the classes listed in
@@ -50,6 +51,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".mixin.headbrowser.")) return "headbrowser";
         if (mixinClassName.contains(".mixin.immersivestorms.")) return "immersive-storms";
         if (mixinClassName.contains(".mixin.gnetum.")) return "gnetum";
+        if (mixinClassName.contains(".mixin.betterclouds.")) return "betterclouds";
         if (mixinClassName.endsWith(".mixin.weather.SodiumWeatherRangeMixin")) return "sodium.weather";
         return null;
     }

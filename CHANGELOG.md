@@ -14,7 +14,9 @@ when its mod has another version.
   shaders are disabled, if Iris turned it off for them. **26.3:** the enchantment glint crash of Iris
   1.11.7 ("Close the existing render pass") is fixed.
 - **Better Clouds (all versions):** toggle key (F9 in the packs), the "Mellow (auto)" preset is chosen
-  automatically while a Mellow shader pack is on, and clouds are hidden behind Voxy's distant terrain.
+  automatically while a Mellow shader pack is on, and clouds are hidden behind Voxy's distant terrain
+  (26.2: Better Clouds 1.14 compared its clouds with Voxy's depth on the wrong scale while a shader pack
+  was on, so they showed through distant mountains).
 - **Elytra Contrails (all versions):** trails are only sampled for players and entities that have them
   switched on, and only players are looped over.
 - **Touch'n Motion 1.0.5 (all versions):** a seated player's head follows where the player faces, with

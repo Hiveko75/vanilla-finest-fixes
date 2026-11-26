@@ -61,7 +61,11 @@ The hard-coded texts module is not version-checked: it only touches texts that m
 - **Mellow cloud preset:** with a Mellow shader pack active, a Better Clouds preset made for Mellow
   ("Mellow (auto)") is selected, and the previous one comes back afterwards.
 - **Voxy cloud depth:** turns on Better Clouds' built-in Voxy support, so with shaders clouds are
-  hidden behind distant Voxy terrain.
+  hidden behind distant Voxy terrain. On 26.2 (Better Clouds 1.14) that support is already on but
+  compared its cloud depth with Voxy's on the wrong scale while a shader pack is on (Iris 1.11.2 makes
+  Minecraft and Voxy use the -1..1 depth range, and Better Clouds 1.14 only allows for that with
+  Distant Horizons), so clouds were drawn over distant mountains; Fixes tells it the range, as Better
+  Clouds 1.15 does by itself.
 
 ## Elytra Contrails module (needs Elytra Contrails)
 
@@ -222,8 +226,9 @@ together with the old separate mods.
   reached by name at run time; the Iris and Voxy mixins are only applied when that mod is installed
   (`MixinPlugin` with `ModuleCheck`: mixins in `mixin.iris` need Iris, `mixin.voxy` Voxy,
   `mixin.elytratrails` Elytra Contrails, `mixin.touchnmotion` Touch'n Motion, `mixin.atmospherics`
-  Atmospherics, `mixin.eso` Enchanted's Sodium Options, `mixin.headbrowser` Head Browser and
-  `mixin.gnetum` Gnetum (both targeted by class name), each in a listed version). Elytra Contrails and
+  Atmospherics, `mixin.eso` Enchanted's Sodium Options, `mixin.headbrowser` Head Browser,
+  `mixin.gnetum` Gnetum and `mixin.betterclouds` Better Clouds (26.2 only; these three targeted by
+  class name), each in a listed version). Elytra Contrails and
   Enchanted's Sodium Options are only needed at compile time (`compileOnly`, from Modrinth's Maven);
   Touch'n Motion is targeted by class name.
 - Hard-coded texts: `HardcodedTextsMixin` is empty and only applied to listed classes whose mod is
