@@ -68,8 +68,9 @@ The hard-coded texts module is not version-checked: it only touches texts that m
   hidden behind distant Voxy terrain. On 26.2 (Better Clouds 1.14) that support is already on but
   compared its cloud depth with Voxy's on the wrong scale while a shader pack is on (Iris 1.11.2 makes
   Minecraft and Voxy use the -1..1 depth range, and Better Clouds 1.14 only allows for that with
-  Distant Horizons), so clouds were drawn over distant mountains; Fixes tells it the range, as Better
-  Clouds 1.15 does by itself.
+  Distant Horizons), and it never used Voxy's projection at all (without Distant Horizons it took a
+  placeholder matrix from its Distant Horizons support instead), so clouds were drawn over distant
+  mountains. Fixes gives it the range and Voxy's projection, as Better Clouds 1.15 does by itself.
 
 ## Elytra Contrails module (needs Elytra Contrails)
 

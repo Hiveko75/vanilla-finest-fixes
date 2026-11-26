@@ -13,6 +13,7 @@
     "weather.SodiumWeatherRangeMixin",
     "gnetum.GnetumSodiumPageMixin",
     "betterclouds.VoxyCloudDepthRangeMixin",
+    "betterclouds.VoxyCloudProjectionMixin",
     "betterclouds.PresetListMixin"
   ],
   "injectors": {
