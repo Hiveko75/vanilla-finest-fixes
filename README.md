@@ -208,6 +208,14 @@ Sandstorm grains are much smaller: Immersive Storms spawns them at dust size 10,
 pixel (1/16 block) across; grains grow to 2 and 3×4 pixels as they age, as in Immersive Storms. Ambient wind
 particles are unchanged.
 
+## Extreme Sound Muffler module (needs Extreme Sound Muffler 4.06; 26.3)
+
+The Blocks list shows block names in the game's language. ESM names each block once, when it first fills its
+block cache, and saves that cache, so the names stayed in the language of that first start (English on a new
+instance). The module maps such an English name back to the block (from the en_us language files) and shows
+the current language's name. Only the shown text changes; ESM's saved names and muffled blocks stay as they are.
+Searching still matches ESM's saved (English) names.
+
 ## Gnetum module (needs Gnetum 4.6.5; all versions)
 
 Gnetum's page in Sodium's Video Settings (*Gnetum*: General, Elements) follows the current language. Gnetum

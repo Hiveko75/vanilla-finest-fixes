@@ -52,6 +52,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".mixin.headbrowser.")) return "headbrowser";
         if (mixinClassName.contains(".mixin.immersivestorms.")) return "immersive-storms";
         if (mixinClassName.contains(".mixin.gnetum.")) return "gnetum";
+        if (mixinClassName.contains(".mixin.esm.")) return "extremesoundmuffler";
         if (mixinClassName.contains(".mixin.betterclouds.")) return "betterclouds";
         if (mixinClassName.endsWith(".mixin.weather.SodiumWeatherRangeMixin")) return "sodium.weather";
         return null;
