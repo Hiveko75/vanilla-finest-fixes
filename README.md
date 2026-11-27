@@ -168,6 +168,14 @@ resource packs (the Hungarian Translations pack has them).
   FAVORITED, ALL) and the "Allowed Values:" line in its tooltip. Option names and descriptions are normal
   texts (`<key>.name`, `<key>.description`), which the Hungarian pack fills in.
 - **macOS Input Fixes 1.16:** its eight options on the Mouse Settings screen (names, tooltips, ON/OFF).
+- **Key Overlay (26.3):** its whole settings screen (12 texts).
+- **Mouse Tweaks 2.31:** its whole settings screen, with the value names (17 texts).
+- **Network Protocol Disconnect 2.0.0:** its settings screen (5 texts; the title is the mod's name).
+- **Toggle Nametags 2.7.9:** its settings screen (options with their values, Yes/No, the Essential note,
+  the back buttons) and its chat messages. Its key binding names are already translation keys (the English
+  labels), which the Hungarian pack fills in.
+- **EMF Compat Core 2.4.0:** its settings screen and the options its addons put there (Core, Not Enough
+  Animations: names, value descriptions, On/Off), looked up when the screen draws them.
 - **MiniHUD 0.41:** the world time line when `dateFormatMinecraft` is the packs' "Day {DAY_1}" (or
   MiniHUD's own default), so each language can write the day its own way ("{DAY_1}. nap"). A format the
   player typed in stays as it is.

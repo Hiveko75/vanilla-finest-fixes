@@ -33,7 +33,23 @@ import org.spongepowered.asm.mixin.Mixin;
         "dev.isxander.debugify.client.gui.ConfigGuiHelper",
         // SpectreLib 0.23 (Cherished Worlds' settings: enum values)
         "com.illusivesoulworks.spectrelib.config.client.screen.EditConfigScreen$EnumConfigEntry",
-        "com.illusivesoulworks.spectrelib.config.client.screen.EditConfigScreen$ConfigList"
+        "com.illusivesoulworks.spectrelib.config.client.screen.EditConfigScreen$ConfigList",
+        // Key Overlay 26.3 (its settings screen)
+        "me.seyit.config.ConfigScreen",
+        // Mouse Tweaks 2.31 (its settings screen)
+        "yalter.mousetweaks.ConfigScreen",
+        // Network Protocol Disconnect 2.0.0 (its settings screen)
+        "net.mobilelize.netprodis.config.ConfigMenu",
+        // Toggle Nametags 2.7.9 (settings screen and chat messages)
+        "sh.ndy.screens.ConfigScreen",
+        "sh.ndy.ToggleNametagsModMenu",
+        "sh.ndy.features.listeners.BossbarToggleListener",
+        "sh.ndy.features.listeners.NametagsToggleListener",
+        "sh.ndy.features.listeners.SelfNametagToggleListener",
+        // EMF Compat Core 2.4.0 (its settings screen, also the Not Enough Animations addon's options)
+        "strm.emfcompat.core.client.ConfigScreen",
+        "strm.emfcompat.core.client.ConfigScreen$OptionEntry",
+        "strm.emfcompat.core.client.ConfigScreen$HeaderEntry"
 }, priority = 2000, remap = false)
 public abstract class HardcodedTextsMixin {
 }

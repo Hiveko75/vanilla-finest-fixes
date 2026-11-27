@@ -391,6 +391,124 @@
         "ALL": "enum.all",
         "Allowed Values: NONE, FAVORITED, ALL": "allowed_values.backup_type"
       }
+    },
+    "keyoverlay": {
+      "mod": "keyoverlay",
+      "classes": [
+        "me.seyit.config.ConfigScreen"
+      ],
+      "texts": {
+        "Key Overlay Config": "title",
+        "General": "general",
+        "Position": "position",
+        "Text Color": "text_color",
+        "Text Scale": "text_scale",
+        "X Offset": "x_offset",
+        "Y Offset": "y_offset",
+        "Show Background": "show_background",
+        "Background Color": "background_color",
+        "Background Opacity": "background_opacity",
+        "Hide On Active Slot": "hide_on_active_slot",
+        "Hide keybind on currently selected hotbar slot": "hide_on_active_slot.tooltip"
+      }
+    },
+    "mousetweaks": {
+      "mod": "mousetweaks",
+      "classes": [
+        "yalter.mousetweaks.ConfigScreen"
+      ],
+      "texts": {
+        "Mouse Tweaks Options": "title",
+        "RMB Tweak": "rmb_tweak",
+        "Wheel Tweak": "wheel_tweak",
+        "LMB Tweak With Item": "lmb_tweak_with_item",
+        "LMB Tweak Without Item": "lmb_tweak_without_item",
+        "Wheel Tweak Search Order": "wheel_search_order",
+        "Scroll Direction": "scroll_direction",
+        "Scroll Scaling": "scroll_scaling",
+        "Debug Mode": "debug_mode",
+        "Multiple Wheel Clicks Move Multiple Items": "scroll_scaling.multiple",
+        "Always Move One Item (macOS Compatibility)": "scroll_scaling.one",
+        "Down to Push, Up to Pull": "scroll_direction.down_push",
+        "Up to Push, Down to Pull": "scroll_direction.up_push",
+        "Inventory Position Aware": "scroll_direction.position",
+        "Inventory Position Aware, Inverted": "scroll_direction.position_inverted",
+        "First to Last": "search_order.first_to_last",
+        "Last to First": "search_order.last_to_first"
+      }
+    },
+    "netprodis": {
+      "mod": "netprodis",
+      "classes": [
+        "net.mobilelize.netprodis.config.ConfigMenu"
+      ],
+      "texts": {
+        "Global": "global",
+        "Stop Network Protocol Errors": "stop_errors",
+        "Enables the mod.": "stop_errors.tooltip",
+        "Output Logs": "output_logs",
+        "Sets if it should log anything.": "output_logs.tooltip"
+      }
+    },
+    "togglenametags": {
+      "mod": "togglenametags",
+      "classes": [
+        "sh.ndy.screens.ConfigScreen",
+        "sh.ndy.ToggleNametagsModMenu",
+        "sh.ndy.features.listeners.BossbarToggleListener",
+        "sh.ndy.features.listeners.NametagsToggleListener",
+        "sh.ndy.features.listeners.SelfNametagToggleListener"
+      ],
+      "texts": {
+        "Back to Game": "back_to_game",
+        "Back to Mod Menu": "back_to_mod_menu",
+        "§aYes": "yes",
+        "§cNo": "no",
+        "Show all nametags: %s": "show_all",
+        "Show your own nametags: %s": "show_own",
+        "Show the bossbar: %s": "show_bossbar",
+        "Nametag Opacity: %s%": "opacity",
+        "Show nametag text shadow: %s": "text_shadow",
+        "Please disable \"Essential\" in your §llauncher§r, in order to change nametag opacity.": "essential",
+        "The bossbar is visible!": "bossbar_visible",
+        "The bossbar is hidden!": "bossbar_hidden",
+        "Nametags are now shown!": "nametags_shown",
+        "Nametags are now hidden!": "nametags_hidden",
+        "Nametags are now hidden (except yours)!": "nametags_hidden_except_own",
+        "Your nametag is visible!": "own_visible",
+        "Your nametag is hidden!": "own_hidden"
+      }
+    },
+    "emf_compat": {
+      "mod": "emf_compat_core",
+      "classes": [
+        "strm.emfcompat.core.client.ConfigScreen",
+        "strm.emfcompat.core.client.ConfigScreen$OptionEntry",
+        "strm.emfcompat.core.client.ConfigScreen$HeaderEntry"
+      ],
+      "literal": true,
+      "texts": {
+        "Reset": "reset",
+        "Set every option of this tab back to its default.": "reset.tooltip",
+        "No options yet.": "no_options",
+        "its parent": "its_parent",
+        "Has no effect while %s is off. %s": "no_effect_while_off",
+        "Core": "core",
+        "EMF compatibility": "emf_compatibility",
+        "On": "on",
+        "Off": "off",
+        "Every installed addon works as configured in its own tab.": "emf_compatibility.on",
+        "Turn off every EMF compatibility addon at once — the game behaves as if only EMF and your resource pack were installed. Applies immediately, no restart needed.": "emf_compatibility.off",
+        "Smooth pose transitions": "smooth_pose_transitions",
+        "Blend between a mod's pose and your resource pack's animation when one starts, ends or changes, instead of switching in one frame.": "smooth_pose_transitions.on",
+        "Switch straight to the pose, as before.": "smooth_pose_transitions.off",
+        "Crouch fix": "crouch_fix",
+        "Keep a crouching player at the right height while a mod animates them. Without it the model can sink into the ground or drop lower than the crouch, and jump up and down with every attack.": "crouch_fix.on",
+        "Leave the crouch to the mods' animations and your resource pack.": "crouch_fix.off",
+        "Not Enough Animations": "nea",
+        "Apply EMF compatibility to NotEnoughAnimations poses.": "nea.on",
+        "Disable all EMF compatibility for NotEnoughAnimations.": "nea.off"
+      }
     }
   }
 }
