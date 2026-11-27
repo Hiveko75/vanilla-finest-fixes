@@ -28,11 +28,12 @@ final class MellowPreset {
     static final String KEY = "mellow_auto";
     private static final String TITLE = "Mellow (auto)";
     private static final String PACK_PREFIX = "mellow";
-    // Hiveko's values under Mellow 3.5 (26 Nov: Better Clouds 1.15.1 on 26.3, 1.14.4 on 26.2); the same as every pack's preset.
+    // Hiveko's values under Mellow 3.5 (26 Nov: Better Clouds 1.15.1 on 26.3, 1.14.4 on 26.2; opacity factor 0.75 on
+    // 27 Nov); the same as every pack's preset.
     private static final float GAMMA = 0.05f;
     private static final float DAY_BRIGHTNESS = 1.0f;
     private static final float SATURATION = 2.0f;
-    private static final float OPACITY_FACTOR = 0.5f;
+    private static final float OPACITY_FACTOR = 0.75f;
     private static final int CHECK_INTERVAL_TICKS = 10;
 
     private static final Logger LOGGER = LoggerFactory.getLogger("Vanilla Finest Fixes");
