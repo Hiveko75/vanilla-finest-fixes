@@ -52,6 +52,11 @@ The hard-coded texts module is not version-checked: it only touches texts that m
   ([IrisShaders/Iris#3390](https://github.com/IrisShaders/Iris/issues/3390)). The glint textures
   are now loaded at the start of every frame, before any render pass. Older Iris versions don't
   look the texture up there, so they don't need it.
+- **Resource packs can translate Iris again (26.3, Iris 1.11.7).** Iris copies its own language file
+  into Minecraft's texts again each time the next mod's language file is read, so a resource pack's
+  Iris texts were always overwritten (in Hungarian, Iris's own "Be-" / "Ki-" stayed on every shader
+  on/off button). When the texts are finished, Iris's language files are read once more in the normal
+  order, Iris's own first and resource packs on top. Only Iris's own texts are affected.
 
 ## Better Clouds module (needs Better Clouds and Fabric API)
 

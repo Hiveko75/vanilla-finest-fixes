@@ -12,7 +12,9 @@ when its mod has another version.
 
 - **Iris (all versions):** Improved Transparency (Fabulous graphics on 1.21.1) is turned back on when
   shaders are disabled, if Iris turned it off for them. **26.3:** the enchantment glint crash of Iris
-  1.11.7 ("Close the existing render pass") is fixed.
+  1.11.7 ("Close the existing render pass") is fixed, and resource packs can translate Iris's own texts
+  again (Iris 1.11.7 copied its language file over them once per mod, so its Hungarian "Be-" / "Ki-"
+  always won).
 - **Better Clouds (all versions):** toggle key (F9 in the packs), the "Mellow (auto)" preset is chosen
   automatically while a Mellow shader pack is on, and clouds are hidden behind Voxy's distant terrain
   (26.2: Better Clouds 1.14 compared its clouds with Voxy's depth on the wrong scale, and with a placeholder

@@ -42,6 +42,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
     /** The {@link ModuleCheck} key a mixin belongs to, or null for mixins that always apply. */
     static String moduleKey(String mixinClassName) {
         if (mixinClassName.endsWith(".mixin.iris.GlintTexturesMixin")) return "iris.glint";
+        if (mixinClassName.endsWith(".mixin.iris.IrisLanguageMixin")) return "iris.lang";
         if (mixinClassName.contains(".mixin.iris.")) return "iris";
         if (mixinClassName.contains(".mixin.elytratrails.")) return "elytratrails";
         if (mixinClassName.contains(".mixin.touchnmotion.")) return "touch_n_motion";

@@ -57,6 +57,10 @@ public class VanillaFinestFixes implements ClientModInitializer {
             } else {
                 LOGGER.info("Iris module active");
             }
+            if (ModuleCheck.inThisVersion("iris.lang") && !ModuleCheck.matches("iris.lang")) {
+                LOGGER.info("Iris language fix is off: made for {}, found {}",
+                        ModuleCheck.expectedText("iris.lang"), ModuleCheck.installedVersion("iris"));
+            }
         }
 
         if (check("Better Clouds", "betterclouds")) {
