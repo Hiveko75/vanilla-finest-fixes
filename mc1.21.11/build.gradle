@@ -35,6 +35,8 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     // Compile-only: Elytra Contrails 1.4.9 (Modrinth version 9KJRbgAa), for the Elytra Contrails module; not bundled.
     modCompileOnly "maven.modrinth:elytra-contrails-mod:9KJRbgAa"
+    // Enchanted's Sodium Options 1.1.8 (Modrinth version HYeHw7Mp), for its tooltip module; not bundled
+    modCompileOnly "maven.modrinth:bd7qKEEC:HYeHw7Mp"
 }
 
 processResources {

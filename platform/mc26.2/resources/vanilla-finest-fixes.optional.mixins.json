@@ -4,6 +4,7 @@
   "plugin": "io.github.hiveko.vanillafinest.fixes.MixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "eso.TooltipRenderHelperMixin",
     "voxy.IrisShaderPatchMixin",
     "voxy.IrisVoxyRenderPipelineDataMixin",
     "headbrowser.HeadBrowserMixin",

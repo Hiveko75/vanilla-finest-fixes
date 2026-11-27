@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
  * Enchanted's Sodium Options draws its option tooltips itself, in a box of its own beside the list. This
  * shows the same text as a normal Minecraft tooltip instead ({@link VanillaTooltips}), so it looks like every
  * other tooltip in the game and follows tooltip resource packs and mods. Enchanted's Sodium Options module
- * (26.3, 1.4.1 only; see {@link io.github.hiveko.vanillafinest.fixes.MixinPlugin}).
+ * (1.4.1 on 26.3, 1.3.1 on 26.2, 1.3.2 on 26.1.2, 1.1.8 on 1.21.11; see {@link io.github.hiveko.vanillafinest.fixes.MixinPlugin}).
  */
 @Mixin(TooltipRenderHelper.class)
 public abstract class TooltipRenderHelperMixin {

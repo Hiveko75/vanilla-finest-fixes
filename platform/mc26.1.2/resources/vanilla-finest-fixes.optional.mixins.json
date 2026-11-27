@@ -4,6 +4,7 @@
   "plugin": "io.github.hiveko.vanillafinest.fixes.MixinPlugin",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "eso.TooltipRenderHelperMixin",
     "headbrowser.HeadBrowserMixin",
     "headbrowser.BrowseScreenMixin",
     "headbrowser.HeadBrowserConfigMixin",

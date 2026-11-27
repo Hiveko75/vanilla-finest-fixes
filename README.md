@@ -172,7 +172,7 @@ lists the same classes. Texts not in the list are not touched, and when a mod up
 text simply stays in the mod's words. A text built from values ("Delete 3 screenshots?") is listed with
 `%s` and keeps its values in the translation (`%1$s` lets a translation leave out the English plural "s").
 
-## Enchanted's Sodium Options module (needs 1.4.1; 26.3)
+## Enchanted's Sodium Options module (1.4.1 on 26.3, 1.3.1 on 26.2, 1.3.2 on 26.1.2, 1.1.8 on 1.21.11)
 
 Enchanted's Sodium Options draws its option tooltips itself, in its own box beside the option list. This
 module shows the same text (the option and its value, the description, the performance impact) as a
@@ -223,9 +223,9 @@ range, which is raised too (only those versions, `sodium.weather`). 1.21.1 has n
 | File | Minecraft | Modules |
 |---|---|---|
 | `vanilla-finest-fixes-*+mc26.3.jar` | 26.3 | Iris (with glint fix), Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, Atmospherics, ImageIO, hard-coded texts, Enchanted's Sodium Options, Immersive Storms, Weather, Gnetum |
-| `vanilla-finest-fixes-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser, Weather, Gnetum |
-| `vanilla-finest-fixes-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser, Weather, Gnetum |
-| `vanilla-finest-fixes-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Head Browser, Weather, Gnetum |
+| `vanilla-finest-fixes-*+mc26.2.jar` | 26.2 | Iris, Better Clouds, Voxy, Elytra Contrails, Touch'n Motion, ImageIO, Enchanted's Sodium Options, Head Browser, Weather, Gnetum |
+| `vanilla-finest-fixes-*+mc26.1.2.jar` | 26.1.2 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Enchanted's Sodium Options, Head Browser, Weather, Gnetum |
+| `vanilla-finest-fixes-*+mc1.21.11.jar` | 1.21.11 | Iris, Better Clouds, Elytra Contrails, Touch'n Motion, ImageIO, Enchanted's Sodium Options, Head Browser, Weather, Gnetum |
 | `vanilla-finest-fixes-*+mc1.21.1.jar` | 1.21, 1.21.1 | Iris, Better Clouds, Elytra Contrails (player trails), Touch'n Motion, ImageIO, Gnetum |
 
 The mod declares that it provides `better-clouds-toggle`, `iris-glint-fix`,
