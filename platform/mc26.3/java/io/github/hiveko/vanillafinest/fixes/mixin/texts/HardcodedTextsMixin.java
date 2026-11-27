@@ -49,7 +49,10 @@ import org.spongepowered.asm.mixin.Mixin;
         // EMF Compat Core 2.4.0 (its settings screen, also the Not Enough Animations addon's options)
         "strm.emfcompat.core.client.ConfigScreen",
         "strm.emfcompat.core.client.ConfigScreen$OptionEntry",
-        "strm.emfcompat.core.client.ConfigScreen$HeaderEntry"
+        "strm.emfcompat.core.client.ConfigScreen$HeaderEntry",
+        // Puzzles Lib 26.3 (the Fabric settings screen of Fuzs's mods: Cut Through, Locked In Slots, Name Tag
+        // Upgrade, Reach Behind; its setting names are made from the config keys)
+        "fuzs.puzzleslib.fabric.impl.client.config.FabricConfigurationScreen"
 }, priority = 2000, remap = false)
 public abstract class HardcodedTextsMixin {
 }
