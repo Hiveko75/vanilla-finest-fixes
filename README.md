@@ -196,7 +196,9 @@ same themselves.
 ## Immersive Storms module (needs Immersive Storms 1.8.0; 26.3)
 
 Sandstorm grains are much smaller: Immersive Storms spawns them at dust size 10, which Minecraft caps at 4
-(the largest dust); the module makes them 1.5 (redstone dust is 1). Ambient wind particles are unchanged.
+(the largest dust); the module makes them 2.2 (redstone dust is 1), so a fresh grain is about one block
+pixel (1/16 block) across; grains grow to 2 and 3×4 pixels as they age, as in Immersive Storms. Ambient wind
+particles are unchanged.
 
 ## Gnetum module (needs Gnetum 4.6.5; all versions)
 
