@@ -47,6 +47,9 @@ import java.util.Set;
  *       (Head Tracker's compass letters);</li>
  *   <li>{@code "calls"} lists methods ({@code owner/Class.name}) whose text result is looked up too
  *       ({@link Texts#literal}), for a setting the pack fills with a text (MiniHUD's date format);</li>
+ *   <li>{@code "fields"} lists text fields ({@code owner/Class.name}) whose value is looked up too
+ *       ({@link Texts#literal}) where the class reads it, for names a mod draws as plain text (EMF Compat's
+ *       option names, which its addons fill);</li>
  *   <li>{@code "methods"} limits a group to methods whose name contains that word, for code another mod's
  *       mixin put into a Minecraft class (Head Tracker's compass in LocatorBar).</li>
  * </ul>
@@ -63,7 +66,7 @@ public final class TextPatcher {
 
     /** One group of {@value #FILE}. {@code texts}: the mod's text → full translation key. */
     record Group(String id, String mod, String methods, boolean literal, boolean arrays, Set<String> calls,
-                 Map<String, String> texts) {}
+                 Set<String> fields, Map<String, String> texts) {}
 
     private static Map<String, List<Group>> byClass;
     private static Map<String, Group> byId;
@@ -86,7 +89,7 @@ public final class TextPatcher {
                 }
                 Group g = new Group(e.getKey(), o.get("mod").getAsString(),
                         o.has("methods") ? o.get("methods").getAsString() : null,
-                        flag(o, "literal"), flag(o, "arrays"), strings(o, "calls"), texts);
+                        flag(o, "literal"), flag(o, "arrays"), strings(o, "calls"), strings(o, "fields"), texts);
                 byId.put(g.id(), g);
                 for (JsonElement c : o.getAsJsonArray("classes")) {
                     byClass.computeIfAbsent(c.getAsString(), k -> new ArrayList<>()).add(g);
@@ -181,6 +184,14 @@ public final class TextPatcher {
                         add.add(new LdcInsnNode(g.id()));
                         add.add(new MethodInsnNode(Opcodes.INVOKESTATIC, TEXTS, "literal", "(" + STRING + STRING + ")" + STRING, false));
                         m.instructions.insert(call, add);
+                        count++;
+                    } else if (!g.fields().isEmpty() && insn instanceof FieldInsnNode read
+                            && read.getOpcode() == Opcodes.GETFIELD && read.desc.equals(STRING)
+                            && g.fields().contains(read.owner + "." + read.name)) {
+                        InsnList add = new InsnList();
+                        add.add(new LdcInsnNode(g.id()));
+                        add.add(new MethodInsnNode(Opcodes.INVOKESTATIC, TEXTS, "literal", "(" + STRING + STRING + ")" + STRING, false));
+                        m.instructions.insert(read, add);
                         count++;
                     } else if (g.arrays() && insn instanceof FieldInsnNode field && field.getOpcode() == Opcodes.GETSTATIC
                             && field.desc.equals("[" + STRING)) {

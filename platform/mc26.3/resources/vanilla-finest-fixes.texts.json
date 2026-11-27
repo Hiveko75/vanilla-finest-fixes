@@ -487,6 +487,12 @@
         "strm.emfcompat.core.client.ConfigScreen$HeaderEntry"
       ],
       "literal": true,
+      "fields": [
+        "strm/emfcompat/core/ConfigRegistry$BooleanOption.label",
+        "strm/emfcompat/core/ConfigRegistry$ChoiceOption.label",
+        "strm/emfcompat/core/ConfigRegistry$Group.title",
+        "strm/emfcompat/core/ConfigRegistry$Section.title"
+      ],
       "texts": {
         "Reset": "reset",
         "Set every option of this tab back to its default.": "reset.tooltip",
@@ -806,7 +812,38 @@
         "Requires Empty Hand": "reachbehind.requires_empty_hand",
         "Pass Clicks To Attached Block": "reachbehind.pass_clicks_to_attached_block",
         "Passes Block Clicks Through": "reachbehind.passes_block_clicks_through",
-        "Passes Entity Clicks Through": "reachbehind.passes_entity_clicks_through"
+        "Passes Entity Clicks Through": "reachbehind.passes_entity_clicks_through",
+        "Only allow targeting alive entities, as opposed to entities that have already died and only remain to render a death animation. Greatly helps in combat as dead entities will no longer absorb hits.": "cutthrough.target_alive_only.tip",
+        "Transparency value for drawing the locked slot overlay on the gui hotbar.": "lockedinslots.gui_hotbar_overlay_alpha.tip",
+        "A slot can only be locked when the contained item cannot be stacked like tools and armor.": "lockedinslots.item_must_not_be_stackable.tip",
+        "A slot can only be locked when it is not empty. When empty slots are locked, an item can still be put in.": "lockedinslots.slot_must_not_be_empty.tip",
+        "Show a tooltip hint on how to unlock a locked slot.": "lockedinslots.unlock_slot_hint.tip",
+        "Support locking any inventory slot, including armor and offhand.": "lockedinslots.allow_locking_all_slots.tip",
+        "Disallow collecting items of a type (via double-clicking) and moving all items of a type (via shift+double-clicking) when any items that would be moved are in locked slots.": "lockedinslots.prevent_double_click_actions_for_locked_items.tip1",
+        "This is a workaround for the server picking items from locked slots when using these mechanics, but unfortunately partially breaks the vanilla behavior.": "lockedinslots.prevent_double_click_actions_for_locked_items.tip2",
+        "Maximum time in ticks it takes to switch the lock on a slot.": "lockedinslots.trigger_lock_ticks.tip1",
+        "Set to zero to switch the lock instantly like a normal key press.": "lockedinslots.trigger_lock_ticks.tip2",
+        "Control how the name tag edit screen opens when holding the item and right-clicking.": "nametagupgrade.open_name_tag_edit_screen.tip",
+        "Edit name tags without an anvil, simply from a handy screen opened via right-clicking.": "nametagupgrade.edit_name_tags_without_anvil.tip",
+        "The naming field in the name tag screen will support formatting codes for setting custom text colors and styles.": "nametagupgrade.renaming_supports_formatting.tip",
+        "Mobs that have a custom name drop a name tag with that name on death.": "nametagupgrade.drop_name_tags_on_death.tip",
+        "Mobs that have a custom name can have it removed using shears and drop a name tag with that name.": "nametagupgrade.remove_custom_name_using_shears.tip",
+        "When removing a custom name using shears; prioritize shearing-off all leashes connected to the mob.": "nametagupgrade.prioritize_shearing_leash.tip",
+        "When removing a custom name using shears; prioritize any mob-specific shearing behavior, such as shearing sheep.": "nametagupgrade.prioritize_shearing_behavior.tip",
+        "When removing a custom name using shears; prioritize shearing-off equipment worn by the mob such as saddles or armor.": "nametagupgrade.prioritize_shearing_equipment.tip",
+        "When renaming an already named mob, the old name tag will drop as an item when the new name tag is applied.": "nametagupgrade.return_applied_name_tags.tip",
+        "When trying to use a name tag on a mob already named with that exact name nothing will be consumed.": "nametagupgrade.prevent_voiding_name_tags.tip",
+        "Play a plopping sound when using a name tag on a mob.": "nametagupgrade.play_name_tag_sound.tip",
+        "Support passing clicks through attached blocks only when interacting with an empty hand.": "reachbehind.requires_empty_hand.tip1",
+        "This generally allows the attached block to still be used, like applying dyes and ink to signs.": "reachbehind.requires_empty_hand.tip2",
+        "Attempt interaction with the supporting block when clicking on an attached block before falling back to the originally clicked block itself.": "reachbehind.pass_clicks_to_attached_block.tip1",
+        "Allows for opening attached containers such as chests and crafting tables without clicking on them directly.": "reachbehind.pass_clicks_to_attached_block.tip2",
+        "This option only takes effect in singleplayer and for players on a multiplayer server which has this mod installed.": "reachbehind.pass_clicks_to_attached_block.tip3",
+        "The hanging blocks that are permitted to pass clicks to the block they attach to.": "reachbehind.passes_block_clicks_through.tip1",
+        "The hanging entities that are permitted to pass clicks to the block they attach to.": "reachbehind.passes_entity_clicks_through.tip1",
+        "This option only takes effect when playing on a multiplayer server without this mod installed. In all other scenarios, configure the respective tag instead.": "reachbehind.passes_clicks_through.tip2",
+        "Default Value: true": "default_true",
+        "Default Value: false": "default_false"
       }
     }
   }
