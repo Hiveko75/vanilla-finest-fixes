@@ -26,7 +26,14 @@ import org.spongepowered.asm.mixin.Mixin;
         // Cloth Config 26.3 ("Value: %d" on sliders, the search field)
         "me.shedaniel.clothconfig2.gui.entries.IntegerSliderEntry",
         "me.shedaniel.clothconfig2.gui.entries.LongSliderEntry",
-        "me.shedaniel.clothconfig2.gui.widget.SearchFieldEntry"
+        "me.shedaniel.clothconfig2.gui.widget.SearchFieldEntry",
+        // Better Happy Ghast Controls 1.0.6 (its whole settings screen)
+        "com.paulnz.ghastcontrols.config.menu.ConfigScreen",
+        // Debugify 26.3 (the bug titles on its settings screen)
+        "dev.isxander.debugify.client.gui.ConfigGuiHelper",
+        // SpectreLib 0.23 (Cherished Worlds' settings: enum values)
+        "com.illusivesoulworks.spectrelib.config.client.screen.EditConfigScreen$EnumConfigEntry",
+        "com.illusivesoulworks.spectrelib.config.client.screen.EditConfigScreen$ConfigList"
 }, priority = 2000, remap = false)
 public abstract class HardcodedTextsMixin {
 }

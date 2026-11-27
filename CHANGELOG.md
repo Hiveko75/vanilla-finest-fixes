@@ -27,8 +27,9 @@ when its mod has another version.
 - **ImageIO (all versions):** ImageIO's disk cache is off, so mods reading images through ImageIO no
   longer write a temp file per image.
 - **Hard-coded texts (26.3):** texts that Screenshot Gallery 2.1, Better Advancements 0.6 (its settings
-  screen), Head Tracker 0.5 (the compass letters), Cloth Config ("Value:", "Search..."), macOS Input Fixes 1.16 (its Mouse Settings options) and MiniHUD 0.41 (the packs' date
-  format "Day {DAY_1}") write into their code or settings become translatable through `vanilla-finest-fixes.*` keys, so resource packs can translate them;
+  screen), Head Tracker 0.5 (the compass letters), Cloth Config ("Value:", "Search..."), macOS Input Fixes 1.16 (its Mouse Settings options), MiniHUD 0.41 (the packs' date
+  format "Day {DAY_1}"), Better Happy Ghast Controls 1.0.6 (its whole settings screen), Debugify (the 90 bug
+  titles on its settings screen) and SpectreLib 0.23 (Cherished Worlds' option values) write into their code or settings become translatable through `vanilla-finest-fixes.*` keys, so resource packs can translate them;
   Better Advancements' settings get readable English names instead of ids.
 - **Enchanted's Sodium Options 1.4.1 (26.3):** its option tooltips are drawn as normal Minecraft tooltips.
 - **Immersive Storms 1.8.0 (26.3):** sandstorm grains are much smaller (dust size 1.5 instead of the

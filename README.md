@@ -155,6 +155,13 @@ resource packs (the Hungarian Translations pack has them).
   the tooltips and the criteria detail explanation.
 - **Head Tracker 0.5:** the compass letters N, E, S, W on the locator bar.
 - **Cloth Config:** "Value: %d" on sliders and the "Search..." field.
+- **Better Happy Ghast Controls 1.0.6:** its whole settings screen (profiles, speeds, toggles, server
+  settings, the delete dialog).
+- **Debugify 26.3:** the bug titles on its settings screen (Debugify keeps them in its code; the explanations
+  under them were already translatable).
+- **SpectreLib 0.23 (inside Cherished Worlds):** the values of an option with fixed choices (NONE,
+  FAVORITED, ALL) and the "Allowed Values:" line in its tooltip. Option names and descriptions are normal
+  texts (`<key>.name`, `<key>.description`), which the Hungarian pack fills in.
 - **macOS Input Fixes 1.16:** its eight options on the Mouse Settings screen (names, tooltips, ON/OFF).
 - **MiniHUD 0.41:** the world time line when `dateFormatMinecraft` is the packs' "Day {DAY_1}" (or
   MiniHUD's own default), so each language can write the day its own way ("{DAY_1}. nap"). A format the
