@@ -17,12 +17,24 @@ import java.util.List;
 
 /**
  * Enchanted's Sodium Options' tooltip as a normal Minecraft tooltip: the option and its value on the first
- * line, the description (wrapped to the width Enchanted's Sodium Options uses), then the performance impact
+ * line, the description (wrapped to the width Enchanted's Sodium Options uses, at most the width Enhanced
+ * Tooltips allows), then the performance impact
  * line when the option has one. With the mouse it follows the pointer like every tooltip; with the keyboard
  * it stays where Enchanted's Sodium Options would put it, beside the focused option.
  */
 public final class VanillaTooltips {
     private VanillaTooltips() {}
+
+    /**
+     * The width the description is wrapped to: Enchanted's Sodium Options' own, but at most half the screen minus
+     * 32, the width Enhanced Tooltips wraps tooltip lines to. Wider lines would be wrapped a second time there,
+     * which leaves single words on their own lines (seen with the longer Hungarian texts).
+     */
+    private static int bodyWidth(TooltipRenderHelper.TooltipRenderState state) {
+        int own = state.width() - state.padding() * 2;
+        int half = Minecraft.getInstance().getWindow().getGuiScaledWidth() / 2 - 32;
+        return Math.max(100, Math.min(own, half));
+    }
 
     public static void show(TooltipRenderHelper.TooltipRenderState state, Font font, GuiGraphics graphics,
                             int mouseX, int mouseY) {
@@ -30,7 +42,7 @@ public final class VanillaTooltips {
         List<FormattedCharSequence> lines = new ArrayList<>();
         Component value = content.getOptionValue();
         if (value != null) lines.add(value.getVisualOrderText());
-        lines.addAll(content.getSplitBody(font, state.width() - state.padding() * 2));
+        lines.addAll(content.getSplitBody(font, bodyWidth(state)));
         Component impact = content.getPerformanceImpact();
         if (impact != null) lines.add(impact.getVisualOrderText());
         if (lines.isEmpty()) return;

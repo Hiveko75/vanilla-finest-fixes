@@ -191,6 +191,8 @@ Enchanted's Sodium Options draws its option tooltips itself, in its own box besi
 module shows the same text (the option and its value, the description, the performance impact) as a
 normal Minecraft tooltip, so it looks like every other tooltip and follows tooltip resource packs and
 mods. With the mouse the tooltip follows the pointer; with the keyboard it stays beside the focused option.
+The description is wrapped to Enchanted's Sodium Options' own width, but at most half the screen minus 32,
+the width Enhanced Tooltips wraps tooltip lines to; otherwise its lines were wrapped twice.
 
 ## Head Browser module (needs Head Browser 2.6.x; 26.2, 26.1.2, 1.21.11)
 

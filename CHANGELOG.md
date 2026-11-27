@@ -35,7 +35,8 @@ when its mod has another version.
   Protocol Disconnect 2.0.0, Toggle Nametags 2.7.9 (settings screen and chat messages) and EMF Compat Core 2.4.0 (its
   settings screen with the addons' options) write into their code or settings become translatable through `vanilla-finest-fixes.*` keys, so resource packs can translate them;
   Better Advancements' settings get readable English names instead of ids.
-- **Enchanted's Sodium Options (26.3 1.4.1, 26.2 1.3.1, 26.1.2 1.3.2, 1.21.11 1.1.8):** its option tooltips are drawn as normal Minecraft tooltips.
+- **Enchanted's Sodium Options (26.3 1.4.1, 26.2 1.3.1, 26.1.2 1.3.2, 1.21.11 1.1.8):** its option tooltips are drawn as normal Minecraft tooltips, wrapped to at most half the screen (Enhanced
+  Tooltips' limit), so longer texts no longer leave single words on their own lines.
 - **Extreme Sound Muffler 4.06 (26.3):** the Blocks list shows block names in the game's language (ESM saved
   them in the language of its first start, usually English).
 - **Immersive Storms 1.8.0 (26.3):** sandstorm grains are much smaller (dust size 2.2 instead of the
