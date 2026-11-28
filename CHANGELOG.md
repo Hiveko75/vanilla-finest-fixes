@@ -42,6 +42,10 @@ when its mod has another version.
   Tooltips' limit), so longer texts no longer leave single words on their own lines.
 - **Extreme Sound Muffler 4.06 (26.3):** the Blocks list shows block names in the game's language (ESM saved
   them in the language of its first start, usually English).
+  The sound lists show readable names in the game's language, with the sound id in the tooltip: the sound's
+  subtitle ("Enderman screams"), with the part that tells it apart when several sounds share one ("Footsteps –
+  Grass"), built names for music, music discs and Nether ambience, and our own names for the sounds without a
+  subtitle (also AmbientSounds' birds, crickets, wind…). Other sounds keep their id.
 - **Immersive Storms 1.8.0 (26.3):** sandstorm grains are much smaller (dust size 2.2 instead of the
   largest, 4): a fresh grain is about one block pixel across.
 - **Weather (26.3, 26.2, 26.1.2, 1.21.11):** Weather Effect Radius goes up to 15 (Minecraft: 10), also on
