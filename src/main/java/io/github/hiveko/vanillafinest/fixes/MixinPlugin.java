@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
  * made for ({@link ModuleCheck}): mixin.iris.* needs Iris (GlintTexturesMixin: the Iris version with the
  * glint bug), mixin.voxy.* Voxy, mixin.elytratrails.* Elytra Contrails, mixin.touchnmotion.* Touch'n
  * Motion, mixin.atmospherics.* Atmospherics, mixin.eso.* Enchanted's Sodium Options, mixin.headbrowser.*
- * Head Browser, mixin.gnetum.* Gnetum and mixin.betterclouds.* Better Clouds (26.2: Better Clouds 1.14). Otherwise
+ * Head Browser, mixin.flashback.* Flashback (not with Flashback Settings), mixin.gnetum.* Gnetum and mixin.betterclouds.* Better Clouds (26.2: Better Clouds 1.14). Otherwise
  * they are
  * skipped, so nothing fails at startup.
  *
@@ -36,6 +36,9 @@ public class MixinPlugin implements IMixinConfigPlugin {
     public boolean shouldApplyMixin(String targetClassName, String mixinClassName) {
         if (mixinClassName.contains(".mixin.texts.")) return TextPatcher.wanted(targetClassName);
         String key = moduleKey(mixinClassName);
+        if ("flashback".equals(key) && FabricLoader.getInstance().isModLoaded("flashback-settings")) {
+            return false; // Flashback Settings moves the replay button itself
+        }
         return key == null || ModuleCheck.matches(key);
     }
 
@@ -54,6 +57,7 @@ public class MixinPlugin implements IMixinConfigPlugin {
         if (mixinClassName.contains(".mixin.gnetum.")) return "gnetum";
         if (mixinClassName.contains(".mixin.esm.")) return "extremesoundmuffler";
         if (mixinClassName.contains(".mixin.betterclouds.")) return "betterclouds";
+        if (mixinClassName.contains(".mixin.flashback.")) return "flashback";
         if (mixinClassName.endsWith(".mixin.weather.SodiumWeatherRangeMixin")) return "sodium.weather";
         return null;
     }

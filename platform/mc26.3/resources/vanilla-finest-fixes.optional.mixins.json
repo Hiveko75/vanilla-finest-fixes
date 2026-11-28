@@ -10,7 +10,8 @@
     "texts.HardcodedTextsMixin",
     "weather.OptionsWeatherRadiusMixin",
     "immersivestorms.SandstormParticlesMixin",
-    "gnetum.GnetumSodiumPageMixin"
+    "gnetum.GnetumSodiumPageMixin",
+    "flashback.FlashbackIconBarMixin"
   ],
   "injectors": {
     "defaultRequire": 1
