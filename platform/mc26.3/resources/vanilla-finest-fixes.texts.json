@@ -845,6 +845,17 @@
         "Default Value: true": "default_true",
         "Default Value: false": "default_false"
       }
+    },
+    "multikeybindings": {
+      "mod": "multi-key-bindings",
+      "classes": [
+        "us.kenny.core.MultiKeyBindingEntry",
+        "us.kenny.core.profile.KeyEntryVisibilityController"
+      ],
+      "texts": {
+        "Hidden": "hidden",
+        "Visible": "visible"
+      }
     }
   }
 }

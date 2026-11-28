@@ -52,7 +52,10 @@ import org.spongepowered.asm.mixin.Mixin;
         "strm.emfcompat.core.client.ConfigScreen$HeaderEntry",
         // Puzzles Lib 26.3 (the Fabric settings screen of Fuzs's mods: Cut Through, Locked In Slots, Name Tag
         // Upgrade, Reach Behind; its setting names are made from the config keys)
-        "fuzs.puzzleslib.fabric.impl.client.config.FabricConfigurationScreen"
+        "fuzs.puzzleslib.fabric.impl.client.config.FabricConfigurationScreen",
+        // Multi Key Bindings 1.4 (the Visible / Hidden buttons in its key visibility edit mode)
+        "us.kenny.core.MultiKeyBindingEntry",
+        "us.kenny.core.profile.KeyEntryVisibilityController"
 }, priority = 2000, remap = false)
 public abstract class HardcodedTextsMixin {
 }

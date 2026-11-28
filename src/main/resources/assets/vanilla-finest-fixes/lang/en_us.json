@@ -695,5 +695,7 @@
   "vanilla-finest-fixes.puzzleslib_config.reachbehind.passes_entity_clicks_through.tip1": "The hanging entities that are permitted to pass clicks to the block they attach to.",
   "vanilla-finest-fixes.puzzleslib_config.reachbehind.passes_clicks_through.tip2": "This option only takes effect when playing on a multiplayer server without this mod installed. In all other scenarios, configure the respective tag instead.",
   "vanilla-finest-fixes.puzzleslib_config.default_true": "Default Value: true",
-  "vanilla-finest-fixes.puzzleslib_config.default_false": "Default Value: false"
+  "vanilla-finest-fixes.puzzleslib_config.default_false": "Default Value: false",
+  "vanilla-finest-fixes.multikeybindings.hidden": "Hidden",
+  "vanilla-finest-fixes.multikeybindings.visible": "Visible"
 }
