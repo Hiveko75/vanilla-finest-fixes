@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 /**
  * Flashback puts its replay button next to the title screen's buttons. This moves it into the row of square
  * icon buttons (language, accessibility, Mod Menu …) as the last icon, the same size, and centres the row
- * again. Done after init and on every tick, as other mods add or move icons late. Flashback module (26.3,
+ * again. Done after init and on every tick, as other mods add or move icons late. Flashback module (26.3 and 26.2,
  * Flashback 0.43.*); not applied when Flashback Settings is installed, which does the same with its own
  * setting (see {@link io.github.hiveko.vanillafinest.fixes.MixinPlugin}). The button is found by its class
  * name, so Fixes doesn't need Flashback to compile.

@@ -15,7 +15,8 @@
     "gnetum.GnetumSodiumPageMixin",
     "betterclouds.VoxyCloudDepthRangeMixin",
     "betterclouds.VoxyCloudProjectionMixin",
-    "betterclouds.PresetListMixin"
+    "betterclouds.PresetListMixin",
+    "flashback.FlashbackIconBarMixin"
   ],
   "injectors": {
     "defaultRequire": 1
